@@ -7,3 +7,5 @@ export class HelloMessage extends React.Component{
       );
     }
 }
+
+module.exports = HelloMessage;

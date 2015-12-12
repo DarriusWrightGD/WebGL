@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import HelloMessage from './HelloMessage';
+import WebGLCanvas from './WebGLCanvas';
 
-ReactDOM.render(<HelloMessage name="Mr.Anderson" />, document.getElementById('app'));
+ReactDOM.render(<WebGLCanvas/>, document.getElementById('app'));
 

@@ -58,8 +58,8 @@ gulp.task('lint', function(){
             'jQuery':false,
             '$':true,
             'require':false,
-            'modules': false,
-            'module':false,
+            'modules': true,
+            'module':true,
             'React':true
         },
         envs: [
