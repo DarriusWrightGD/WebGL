@@ -1,13 +1,24 @@
 import React from 'react'
-import HelloCanvas from './demos/HelloCanvas'
-    
+import Events from './Events'
+import PubSub from 'pubsub-js'
+
 export default class WebGLCanvas extends React.Component{
   constructor(props){
-    super(props);  
+    super(props);
   }
-  
-  tick(){
-      console.log('This ref : ' + this.refs);      
+
+  componentWillMount(){
+    PubSub.subscribe(Events.vertexShaderUpdateEvent, function(eventType,text){
+      console.log("Sub Event text: "+ text);
+    })
+  }
+
+  vertexShaderChanged(text){
+    console.log(text);
+  }
+
+  fragmentShaderChanged(text){
+    console.log(text);
   }
 
   render(){

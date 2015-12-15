@@ -1,14 +1,21 @@
-import React from 'react';
-import WebGLCanvas from './WebGLCanvas';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import WebGLCanvas from './WebGLCanvas'
+import ShaderEditor from './ShaderEditor'
 
 
 export default class App extends React.Component{
-    render() {
-        return (
-            <div>
-                <p>Welcome to webgl</p>
-                <WebGLCanvas/>
-            </div>
-        );
-    }
+
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return (
+        <div>
+          <WebGLCanvas/>
+          <ShaderEditor/>
+        </div>
+      );
+  }
 }
