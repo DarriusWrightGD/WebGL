@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import WebGLCanvas from './WebGLCanvas';
+import App from './App';
 
-ReactDOM.render(<WebGLCanvas/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));
 

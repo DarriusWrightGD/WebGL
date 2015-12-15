@@ -7,70 +7,44 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var connect = require('gulp-connect');
 var streamify = require('gulp-streamify');
-//var browserify = require('gulp-browserify');
 var browserify = require('browserify');
-var babelify = require('babelify')
+var babelify = require('babelify');
 var reactify = require('reactify');
 var open = require('gulp-open');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 
 var src = {
-	script:['scripts/**/*.js','scripts/**/*.jsx','!node_modules/**'],
-	style:['css/**/*.css'],
+	script: ['scripts/**/*.js', 'scripts/**/*.jsx', '!node_modules/**'],
+	style: ['css/**/*.css'],
 	html : ['views/**/*.html']
-}
+};
 
 var config = {
 	port : 4565,
-	devBaseUrl : 'http://localhost',
+	devBaseUrl : 'http://localhost'
 };
 
-gulp.task('connect', function(){
+gulp.task('connect', function () {
 	connect.server({
-		root:['dist'],
+		root: ['dist'],
 		port: config.port,
-		base:  config.devBaseUrl,
+		base: config.devBaseUrl,
 		livereload: true
 	});
 
 });
 
-gulp.task('open', ['connect'], function(){
+gulp.task('open', ['connect'], function () {
 	gulp.src('dist/index.html')
-		.pipe(open({url: config.devBaseUrl + ':' + config.port + '/'}))
+		.pipe(open({url: config.devBaseUrl + ':' + config.port + '/'}));
 });
 
-gulp.task('lint', function(){
-	return gulp.src(src.script)
-
-	.pipe(eslint({
-        extends: 'eslint:recommended',
-        ecmaFeatures: {
-        	'es6' : true,
-            'jsx': true,
-            'modules': true
-        },
-        rules: {
-            'strict': 2
-        },
-        globals: {
-            'jQuery':false,
-            '$':true,
-            'require':false,
-            'modules': true,
-            'module':true,
-            'React':true
-        },
-        envs: [
-            'browser'
-        ],
-        env: { 'es6': true },
-        plugins: [
-        	'react'
-        ]
-    }))   
-	.pipe(eslint.format())
+gulp.task('lint', function () {
+	return gulp.src(src.script).pipe(eslint({
+        'useEslintrc' : true
+    }))
+    .pipe(eslint.format())
 	.pipe(notify({message : 'ESlint complete'}));
 });
 
