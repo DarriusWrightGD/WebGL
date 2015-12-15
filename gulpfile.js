@@ -57,10 +57,11 @@ gulp.task('lint', function(){
         globals: {
             'jQuery':false,
             '$':true,
-            'require':false,
+            'require':true,
             'modules': true,
             'module':true,
-            'React':true
+            'React':true,
+            'pubSub':true
         },
         envs: [
             'browser'
