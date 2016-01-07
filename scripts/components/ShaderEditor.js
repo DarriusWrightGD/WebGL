@@ -15,7 +15,7 @@ var TabPanel = ReactTabs.TabPanel;
 export default class ShaderEditor extends React.Component{
   constructor(props){
     super(props)
-    this.vertexShaderValue = this.fragmentShaderValue = 'void main(){}';
+    this.vertexShaderValue = this.fragmentShaderValue = 'void main(){\n}';
     this.bindEvents();
   }
 
@@ -24,24 +24,22 @@ export default class ShaderEditor extends React.Component{
     this.onFragmentShaderChange = this.onFragmentShaderChange.bind(this);
     this.onLoadVertexEditor = this.onLoadVertexEditor.bind(this);
     this.onLoadFragmentEditor = this.onLoadFragmentEditor.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  handleSelect(index, last){
-
   }
 
   onVertexShaderChange(text){
     if(text !== '')
     {
       this.vertexShaderValue = text;
-      console.log("Pubevent text",text);
       PubSub.publish(Events.vertexShaderUpdateEvent,this.vertexShaderValue);  
     }
   }
 
   onFragmentShaderChange(text){
-    this.fragmentShaderValue = text;
+    if(text !== '')
+    {
+      this.fragmentShaderValue = text;
+      PubSub.publish(Events.fragmenteShaderUpdateEvent,this.fragmentShaderValue);  
+    }
   }
 
   onLoadFragmentEditor(editor)
@@ -58,7 +56,7 @@ export default class ShaderEditor extends React.Component{
 
   render(){
     return (
-      <Tabs onSelect={this.handleSelect} selectedIndex={0}>
+      <Tabs selectedIndex={0}>
         <TabList>
           <Tab>Vertex Shader</Tab>
           <Tab>Fragment Shader</Tab>
@@ -71,6 +69,7 @@ export default class ShaderEditor extends React.Component{
             theme='chaos'
             width='auto'
             height='70vh'
+            fontSize={18}
             onLoad={this.onLoadVertexEditor}
             value={this.vertexShaderValue}
             editorProps={{$blockScrolling: true}}/>
@@ -83,6 +82,7 @@ export default class ShaderEditor extends React.Component{
             width='auto'
             height='70vh'
             theme='chaos'
+            fontSize={18}
             onLoad={this.onLoadFragmentEditor}
             value={this.fragmentShaderValue}
             editorProps={{$blockScrolling: true}}/>

@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import WebGLCanvas from './WebGLCanvas'
 import ShaderEditor from './ShaderEditor'
-
+import HelloGL from './HelloGL'
 
 export default class App extends React.Component{
 
@@ -13,7 +12,7 @@ export default class App extends React.Component{
   render(){
     return (
         <div>
-          <WebGLCanvas/>
+          <HelloGL/>
           <ShaderEditor/>
         </div>
       );

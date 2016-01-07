@@ -44,8 +44,7 @@ gulp.task('lint', function () {
 	return gulp.src(src.script).pipe(eslint({
         'useEslintrc' : true
     }))
-    .pipe(eslint.format())
-	.pipe(notify({message : 'ESlint complete'}));
+    .pipe(eslint.format());
 });
 
 gulp.task('html', function(){
