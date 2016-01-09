@@ -1,0 +1,26 @@
+{
+  "name": "web-gl",
+  "description": "A Tour of the webgl",
+  "main": "main.js",
+  "authors": [
+    "Darrius Wright"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "webgl",
+    "gl"
+  ],
+  "homepage": "https://github.com/DarriusWrightGD/WebGL",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}

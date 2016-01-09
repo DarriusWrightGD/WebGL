@@ -1,7 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import ShaderEditor from './ShaderEditor'
 import HelloGL from './HelloGL'
+import HelloPoint from './demos/HelloPoint'
 
 export default class App extends React.Component{
 
@@ -12,7 +12,7 @@ export default class App extends React.Component{
   render(){
     return (
         <div>
-          <HelloGL/>
+          <HelloPoint/>
           <ShaderEditor/>
         </div>
       );
