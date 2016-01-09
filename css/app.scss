@@ -1,16 +1,27 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
-.glCanvas{
-	text-align: center;
-	display: inline;
+.gl-canvas{
+		display: block;
+		margin: auto;
 }
 
-.errorContainer{
-	background: #1d1d1d;
-}
-
-.errorLog{
-	color : black;
+.error-log{
 	margin-left: 20px;
+	vertical-align: middle;
+	display: table-cell;
+	margin: auto;
+}
+
+.error-log-text{
+	padding-left: 10px;
+}
+
+.error-cross{
+	color : red;
+	padding-left: 15px;
+}
+
+.shader-log{
+	padding-top: 20px;
 }

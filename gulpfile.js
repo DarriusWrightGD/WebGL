@@ -57,12 +57,14 @@ gulp.task('css', function() {
     .pipe(sass({
         includePaths: [src.bootstrap + '/assets/stylesheets']
     }))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('dist/css'))
+		.pipe(connect.reload());
 });
 
 gulp.task('fonts', function() {
     return gulp.src(src.bootstrap + '/assets/fonts/**/*')
-    .pipe(gulp.dest('dist/fonts'));
+    .pipe(gulp.dest('dist/fonts'))
+		.pipe(connect.reload());
 });
 
 
@@ -78,7 +80,7 @@ gulp.task('scripts', function(){
 	browserify({
         debug: true,
         entries: ['scripts/main.js']})
-		.transform(babelify)		
+		.transform(babelify)
 		.bundle()
 		.pipe(source('all.js'))
 		.pipe(gulp.dest('dist/js'))

@@ -22,7 +22,7 @@ export default class WebGLCanvas extends React.Component{
       this.fragmentShaderChanged(text);
     }.bind(this));
   }
-  
+
   componentWillUnmount(){
     PubSub.unsubscribe(this.vsEvent);
     PubSub.unsubscribe(this.fsEvent);
@@ -40,7 +40,7 @@ export default class WebGLCanvas extends React.Component{
     }.bind(this));
     this.loop.start();
   }
-  
+
   shouldComponentUpdate(){
     return false;
   }
@@ -50,7 +50,7 @@ export default class WebGLCanvas extends React.Component{
     var canvas = ReactDOM.findDOMNode(this);
     this.gl = null;
     try{
-      this.gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");    
+      this.gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
     }
     catch(e){
       this.setState({glErrorMessage : e.message});
@@ -92,9 +92,9 @@ export default class WebGLCanvas extends React.Component{
       this.gl.attachShader(this.program,shaders.vertexShader);
       this.gl.attachShader(this.program,shaders.fragmentShader);
       this.gl.linkProgram(this.program);
-      
+
       var success = this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS);
-      
+
       if(!success){
         PubSub.publish(Events.shaderErrorEvent, 'Program issue : ' + this.gl.getProgramInfoLog(this.program));
         this.gl.deleteProgram(this.program);
@@ -105,16 +105,16 @@ export default class WebGLCanvas extends React.Component{
       PubSub.publish(Events.shaderErrorEvent, e.message);
     }
   }
-  
+
   componentDidUpdate(){
     this.props.update();
     this.paint();
   }
-  
+
   paint(){
     this.props.draw(this.gl);
   }
-  
+
   vertexShaderChanged(text){
     this.vertexShader = text;
     this.compileProgram();
@@ -127,7 +127,7 @@ export default class WebGLCanvas extends React.Component{
 
   render(){
     return (
-      <canvas className='glCanvas' height = {this.props.height} width = {this.props.width}>
+      <canvas className='gl-canvas' height = {this.props.height} width = {this.props.width}>
         this.state.glError
         this.state.glErrorMessage
       </canvas>
