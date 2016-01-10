@@ -62,7 +62,7 @@ export default class ShaderLog extends React.Component{
         </div>
     }
     return (
-      <Panel className='shader-log' collapsible expanded={this.state.shaderLogOpen} header='Shader Log' bsStyle='danger' onClick={this.toggleShaderLog}>
+      <Panel className='shader-log' collapsible expanded={this.state.shaderLogOpen} header='Shader Log' bsStyle='primary' onClick={this.toggleShaderLog}>
       {errorLog}
       </Panel>
     );

@@ -43,6 +43,7 @@
     "gulp-uglify": "^1.5.1",
     "gulp-watch": "^4.3.5",
     "main-bower-files": "^2.11.1",
+    "mainloop.js": "^1.0.1",
     "material-ui": "^0.13.4",
     "pubsub-js": "^1.5.3",
     "react": "^0.14.3",

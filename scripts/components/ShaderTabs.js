@@ -52,33 +52,39 @@ export default class ShaderTabs extends React.Component{
   }
 
   render(){
+    var sharedProps = {
+      height: '465px',
+      width: '100%',
+      theme: 'chaos',
+      fontSize: 14,
+      mode: 'glsl'
+    }
     return (
       <Tabs defaultActiveKey={0}>
-      <Tab eventKey={0} title='Vertex Shader'>
-      <AceEditor
-      onChange={this.onVertexShaderChange}
-      name='Vertex Shader Editor'
-      mode='glsl'
-      width='auto'
-      height='50vh'
-      theme='chaos'
-      fontSize={14}
-      onLoad={this.onLoadVertexEditor}
-      value={this.vertexShaderValue}/>
-      </Tab>
-      <Tab eventKey={1} title='FragmentShader'>
-      <AceEditor
-      onChange={this.onFragmentShaderChange}
-      name='Fragment Shader Editor'
-      mode='glsl'
-      width='auto'
-      height='50vh'
-      theme='chaos'
-      fontSize={14}
-      onLoad={this.onLoadFragmentEditor}
-      value={this.fragmentShaderValue}
-      editorProps={{$blockScrolling: true}}/>
-      </Tab>
+        <Tab eventKey={0} title='Vertex Shader'>
+          <AceEditor
+            onChange={this.onVertexShaderChange}
+            name='Vertex Shader Editor'
+            mode={sharedProps.mode}
+            height={sharedProps.height}
+            width={sharedProps.width}
+            theme={sharedProps.theme}
+            fontSize={sharedProps.fontSize}
+            onLoad={this.onLoadVertexEditor}
+            value={this.vertexShaderValue}/>
+        </Tab>
+        <Tab eventKey={1} title='FragmentShader'>
+          <AceEditor
+            onChange={this.onFragmentShaderChange}
+            mode={sharedProps.mode}
+            height={sharedProps.height}
+            width={sharedProps.width}
+            theme={sharedProps.theme}
+            fontSize={sharedProps.fontSize}
+            onLoad={this.onLoadFragmentEditor}
+            value={this.fragmentShaderValue}
+            editorProps={{$blockScrolling: true}}/>
+        </Tab>
       </Tabs>
     );
   }

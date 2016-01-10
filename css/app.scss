@@ -1,9 +1,30 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
+.app-content{
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+.gl-preview-container{
+	@media screen and (max-width: 1250px ){
+		display: table;
+		margin:auto;
+	}
+
+	@media screen and (min-width:1251px ){
+		float: right !important;
+	}
+}
+
 .gl-canvas{
-		display: block;
-		margin: auto;
+		margin-top: 5px;
+		margin-bottom: 20px;
+}
+
+.shader-editor{
+	height:500px;
+	width:100%;
 }
 
 .error-log{
@@ -23,5 +44,9 @@
 }
 
 .shader-log{
-	padding-top: 20px;
+	cursor: pointer;
+}
+
+.inline-block{
+	display: inline-block;
 }
