@@ -3,24 +3,22 @@ import PubSub from 'pubsub-js';
 import {Events} from './Events';
 import {Panel} from 'react-bootstrap';
 
-export default class ShaderLog extends React.Component{
+export default class EditorLog extends React.Component{
   constructor(props){
     super(props);
-    this.state = {shaderError : '' , shaderLogOpen: true, showError: false};
+    this.state = {error : '' , logOpen: true, showError: false};
     this.bindEvents = this.bindEvents.bind(this);
     this.bindEvents();
   }
 
   bindEvents(){
     this.setErrorText = this.setErrorText.bind(this);
-    this.toggleShaderLog = this.toggleShaderLog.bind(this);
+    this.toggleLog = this.toggleLog.bind(this);
     this.clearError = this.clearError.bind(this);
   }
 
   componentWillMount(){
     this.componentMounted = true;
-    this.setState({showError: false});
-
     this.errorToken = PubSub.subscribe(Events.shaderErrorEvent, function(e, errorText){
       this.setErrorText(errorText);
     }.bind(this));
@@ -39,7 +37,7 @@ export default class ShaderLog extends React.Component{
   }
 
   setErrorText(errorText){
-    this.setState({shaderError : errorText ,showError:true});
+    this.setState({error : errorText ,showError:true});
   }
 
   clearError(){
@@ -49,8 +47,8 @@ export default class ShaderLog extends React.Component{
     }
   }
 
-  toggleShaderLog(){
-    this.setState({shaderLogOpen:!this.state.shaderLogOpen})
+  toggleLog(){
+    this.setState({logOpen:!this.state.logOpen})
   }
 
   render(){
@@ -59,12 +57,12 @@ export default class ShaderLog extends React.Component{
     {
         errorLog = <div>
           <span className='glyphicon glyphicon-remove error-cross'/>
-          <span className='error-log-text'>{this.state.shaderError}</span>
+          <span className='error-log-text'>{this.state.error}</span>
         </div>
     }
     return (
-      <Panel className='shader-log' collapsible expanded={this.state.shaderLogOpen} header='Shader Log' bsStyle='primary' onClick={this.toggleShaderLog}>
-      {errorLog}
+      <Panel className='shader-log' collapsible expanded={this.state.logOpen} header='Error Log' bsStyle='primary' onClick={this.toggleLog}>
+        {errorLog}
       </Panel>
     );
   }

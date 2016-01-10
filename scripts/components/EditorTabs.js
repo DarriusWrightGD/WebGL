@@ -7,7 +7,7 @@ import {Tab,Tabs} from 'react-bootstrap';
 import 'brace/mode/glsl';
 import 'brace/theme/chaos';
 
-export default class ShaderTabs extends React.Component{
+export default class EditorTabs extends React.Component{
   constructor(props){
     super(props)
     this.vertexShaderValue = this.fragmentShaderValue = 'void main(){}';
