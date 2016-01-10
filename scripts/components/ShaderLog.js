@@ -19,6 +19,7 @@ export default class ShaderLog extends React.Component{
 
   componentWillMount(){
     this.componentMounted = true;
+    this.setState({showError: false});
 
     this.errorToken = PubSub.subscribe(Events.shaderErrorEvent, function(e, errorText){
       this.setErrorText(errorText);

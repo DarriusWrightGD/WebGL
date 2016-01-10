@@ -22,6 +22,10 @@ export default class ShaderTabs extends React.Component{
     this.onLoadFragmentEditor = this.onLoadFragmentEditor.bind(this);
   }
 
+  componentDidMount(){
+    this.onVertexShaderChange(this.vertexShaderValue);
+    this.onFragmentShaderChange(this.fragmentShaderValue);
+  }
 
   onVertexShaderChange(text){
     if(text !== '')
