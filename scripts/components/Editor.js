@@ -9,9 +9,9 @@ export default class Editor extends React.Component{
 
   render(){
     return (
-      <div className='shader-editor inline-block'>
-        <ProjectExplorer/>
-        <EditorTabs/>
+      <div className='editor'>
+          <ProjectExplorer/>
+          <EditorTabs/>
       </div>
     );
   }
