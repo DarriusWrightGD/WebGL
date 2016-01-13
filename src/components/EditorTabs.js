@@ -4,7 +4,6 @@ import PubSub from 'pubsub-js';
 import Events from './Events';
 import _ from 'lodash';
 import Guid from './../util/Guid'
-
 import mui from 'material-ui';
 
 import 'brace/mode/glsl';
@@ -12,10 +11,7 @@ import 'brace/mode/javascript';
 import 'brace/mode/text';
 import 'brace/theme/chaos';
 
-
 var {Tab, Tabs} = mui;
-
-
 
 export default class EditorTabs extends React.Component{
   constructor(props){
@@ -96,7 +92,7 @@ export default class EditorTabs extends React.Component{
     theme={this.sharedProps.theme}
     fontSize={this.sharedProps.fontSize}
     onLoad={this.onEditorLoad}
-  //  editorProps={{$blockScrolling: true}}
+    editorProps={{$blockScrolling: true}}
     value={content}/>
   }
 
