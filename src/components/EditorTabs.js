@@ -5,6 +5,9 @@ import Events from './Events';
 import _ from 'lodash';
 import Guid from './../util/Guid'
 import mui from 'material-ui';
+import RemoveIcon from 'material-ui/lib/svg-icons/content/clear';
+import style from '../style/MainStyle';
+
 
 import 'brace/mode/glsl';
 import 'brace/mode/javascript';
@@ -50,7 +53,8 @@ export default class EditorTabs extends React.Component{
         <Tab
           label={
             <span>{file.name}
-              <span
+              <RemoveIcon
+                style={style.removeIcon}
                 onClick={
                   function(guid, event){
                     event.stopPropagation();
@@ -62,8 +66,7 @@ export default class EditorTabs extends React.Component{
                     });
                     this.updateTabs(filteredTabs);
                   }.bind(this,guid)
-                }
-                className='glyphicon glyphicon-remove'/>
+                }/>
             </span>
           }
           value={guid}

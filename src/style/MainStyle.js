@@ -10,6 +10,12 @@ module.exports ={
     marginBottom:20,
     fill: Colors.redA400
   },
+  removeIcon:{
+    width:19,
+    height:19,
+    marginRight:5,
+    fill: Colors.white
+  },
   projectIcon:{
     width:19,
     height:19,
