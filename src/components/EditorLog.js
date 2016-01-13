@@ -1,7 +1,9 @@
 import React from 'react';
 import PubSub from 'pubsub-js';
 import {Events} from './Events';
-import {Panel} from 'react-bootstrap';
+import mui from 'material-ui';
+
+var {Card} = mui;
 
 export default class EditorLog extends React.Component{
   constructor(props){
@@ -61,9 +63,10 @@ export default class EditorLog extends React.Component{
         </div>
     }
     return (
-      <Panel className='shader-log' collapsible expanded={this.state.logOpen} header='Error Log' bsStyle='primary' onClick={this.toggleLog}>
+      <Card className='shader-log'>
+        <h2>Error Log</h2>
         {errorLog}
-      </Panel>
+      </Card>
     );
   }
 }

@@ -1,6 +1,10 @@
 import React from 'react';
 import Folder from './Folder';
 
+import mui from 'material-ui';
+
+var {Card,Tab,Tabs} = mui;
+
 export default class ProjectExplorer extends React.Component{
 
   constructor(props){
@@ -8,7 +12,7 @@ export default class ProjectExplorer extends React.Component{
     super(props);
     this.state = {
       fileStructure : {
-        name:'ProjectName',
+        name:'ShaderApp',
         folders:[{
           name:'Assets',
           folders:[{
@@ -43,16 +47,18 @@ export default class ProjectExplorer extends React.Component{
 
   render(){
     return(
-      <div className='project-explorer'>
-        <div className='project-explorer-content'>
-          <div>
-            <span>Project</span>
-          </div>
-          <div>
+        <Tabs>
+        <Tab label='Project'>
+          <div style={{
+            color:'white',
+            background:'#141414',
+            height:445,
+            border:''
+           }}>
             <Folder folder={this.state.fileStructure} />
           </div>
-        </div>
-      </div>
+        </Tab>
+        </Tabs>
     );
   }
 }

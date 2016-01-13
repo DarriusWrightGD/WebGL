@@ -1,4 +1,6 @@
 import React from 'react';
+import {Events} from './Events';
+import PubSub from 'pubsub-js';
 
 export default class File extends React.Component{
   constructor(props){
@@ -8,7 +10,7 @@ export default class File extends React.Component{
 
   render(){
     return(
-      <div className='folder'>
+      <div className='file' onClick={()=>{PubSub.publish(Events.fileSelectedEvent, this.state.file)}}>
         <span><span className='glyphicon glyphicon-file file-icon'/>{this.state.file.name}</span>
       </div>
     );

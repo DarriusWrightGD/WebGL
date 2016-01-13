@@ -1,5 +1,6 @@
-@import 'bootstrap';
-@import 'bootstrap/theme';
+body{
+	margin:0;
+}
 
 .app-content{
 	margin-left: 40px;
@@ -18,12 +19,12 @@
 }
 
 .gl-canvas{
-		margin-top: 5px;
+		margin-top: 25px;
 		margin-bottom: 20px;
 }
 
 .editor{
-	height:500px;
+	height:465px;
 	width: 100%;
 }
 
@@ -33,7 +34,7 @@
 }
 
 .project-explorer{
-	display: inline-block;
+//	display: inline-block;
 	background: #161616;
 	border-right: 3px solid grey;
 	height: 465px;
@@ -74,6 +75,11 @@
 
 .folder{
 	padding-left: 5px;
+	cursor: pointer;
+}
+
+.file{
+	cursor: pointer;
 }
 
 .folder-icon{
