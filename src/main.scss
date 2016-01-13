@@ -1,3 +1,8 @@
+#app{
+	height:100vh;
+	background: #E0E0E0;
+}
+
 body{
 	margin:0;
 }
@@ -23,16 +28,6 @@ body{
 		margin-bottom: 20px;
 }
 
-.editor{
-	height:465px;
-	width: 100%;
-}
-
-.editor-tabs{
-	display: inline-block;
-	width:80%;
-}
-
 .project-explorer{
 //	display: inline-block;
 	background: #161616;
@@ -44,10 +39,6 @@ body{
 	vertical-align: top;
 }
 
-.project-explorer-content{
-	padding-top: 5px;
-	padding-left: 5px;
-}
 
 .error-log{
 	margin-left: 20px;
@@ -57,16 +48,12 @@ body{
 }
 
 .error-log-text{
-	padding-left: 10px;
+	vertical-align: top;
 }
 
-.error-cross{
-	color : red;
-	padding-left: 15px;
-}
-
-.shader-log{
-	cursor: pointer;
+.project-explorer-text
+{
+	vertical-align: top;
 }
 
 .inline-block{
@@ -80,12 +67,4 @@ body{
 
 .file{
 	cursor: pointer;
-}
-
-.folder-icon{
-	padding-right: 8px;
-}
-
-.file-icon{
-	padding-right: 5px;
 }

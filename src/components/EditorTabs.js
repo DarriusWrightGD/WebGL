@@ -29,7 +29,7 @@ export default class EditorTabs extends React.Component{
       fontSize: 14,
     }
     this.state = {tabs:[]};
-    this.defaultTab = <Tab label='Default Tab' value = {Guid.generate()}>
+    this.defaultTab = <Tab label='Start Coding' value = {Guid.generate()}>
       {this.createAceEditor('Default Tab', 'Select or create a file in the project explorer to get started.','text')}
     </Tab>;
   }
@@ -83,7 +83,6 @@ export default class EditorTabs extends React.Component{
   }
 
   createAceEditor(name, content, mode){
-    console.log('Ace mode : ', mode);
     return <AceEditor
     name={name}
     mode={mode}
@@ -97,7 +96,11 @@ export default class EditorTabs extends React.Component{
   }
 
   updateTabs(newTabs){
-    this.setState({tabs: newTabs, currentTab: newTabs[0].props.value})
+    this.setState({tabs: newTabs});
+    if(newTabs.length > 0)
+    {
+      this.setState({currentTab: newTabs[0].props.value})
+    }
   }
 
   componentWillUnmount(){
@@ -110,7 +113,14 @@ export default class EditorTabs extends React.Component{
   }
 
   render(){
-    this.tabContent = this.state.tabs.length > 0 ? this.state.tabs : this.defaultTab;
+    if(this.state.tabs.length > 0)
+    {
+      this.tabContent = this.state.tabs;
+    }
+    else {
+      this.tabContent = this.defaultTab;
+      this.state.currentTab = this.defaultTab.props.value;
+    }
 
     return (
       <Tabs value = {this.state.currentTab}>

@@ -2,6 +2,8 @@ import React from 'react';
 import PubSub from 'pubsub-js';
 import Events from './Events';
 import mui from 'material-ui';
+import ErrorIcon from 'material-ui/lib/svg-icons/content/clear';
+import style from '../style/MainStyle';
 
 var {Card} = mui;
 
@@ -58,7 +60,7 @@ export default class EditorLog extends React.Component{
     if(this.state.showError)
     {
         errorLog = <div>
-          <span className='glyphicon glyphicon-remove error-cross'/>
+          <ErrorIcon style={style.errorIcon}/>
           <span className='error-log-text'>{this.state.error}</span>
         </div>
     }

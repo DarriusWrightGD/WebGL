@@ -1,5 +1,10 @@
 import React from 'react';
 import File from './File.js'
+import ClosedFolderIcon from 'material-ui/lib/svg-icons/file/folder';
+import OpenFolderIcon from 'material-ui/lib/svg-icons/file/folder-open';
+import Colors from 'material-ui/lib/styles/colors';
+import style from './../style/MainStyle'
+
 export default class Folder extends React.Component{
   constructor(props){
     super(props);
@@ -25,11 +30,11 @@ export default class Folder extends React.Component{
     }
 
 
-    var openClass;
+    var folderIcon;
     var folderContent;
 
     if(this.state.open){
-      openClass ='glyphicon glyphicon-folder-open folder-icon';
+      folderIcon = (<OpenFolderIcon style={style.projectIcon} />);
       folderContent = <div>
         <div>
           {foldersView}
@@ -39,14 +44,14 @@ export default class Folder extends React.Component{
         </div>
       </div>
     }else{
-      openClass = 'glyphicon glyphicon-folder-close folder-icon';
+      folderIcon = (<ClosedFolderIcon style={style.projectIcon}/>);
     }
 
 
 
     return(
       <div className='folder'>
-        <span onClick = {this.toggleOpen}><span className={openClass}/>{folder.name}</span>
+        <span onClick = {this.toggleOpen}>{folderIcon}<span className='project-explorer-text'>{folder.name}</span></span>
         {folderContent}
       </div>
     );
