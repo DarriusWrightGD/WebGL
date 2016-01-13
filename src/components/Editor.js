@@ -13,7 +13,7 @@ export default class Editor extends React.Component{
         flexFlow:'row wrap',
         maxWidth:1200,
         width:'100%',
-        margin: '30px auto 30px'
+        margin: '30px auto 0'
       }}>
           <div style={{
             flexGrow: 1,

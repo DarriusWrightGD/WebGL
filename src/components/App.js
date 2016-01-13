@@ -35,7 +35,7 @@ export default class App extends React.Component{
               flexFlow:'row wrap',
               maxWidth:1400,
               width:'100%',
-              margin: '30px auto 30px'
+              margin: '10px auto 10px'
               }}>
               <div style={{
                 flexGrow:3

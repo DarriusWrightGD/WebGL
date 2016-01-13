@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Events} from './Events';
+import Events from './Events';
 import PubSub from 'pubsub-js';
 import MainLoop from 'mainloop.js';
 

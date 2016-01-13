@@ -1,5 +1,5 @@
 import React from 'react';
-import {Events} from './Events';
+import Events from './Events';
 import PubSub from 'pubsub-js';
 
 export default class File extends React.Component{

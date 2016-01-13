@@ -1,6 +1,6 @@
 import React from 'react';
 import PubSub from 'pubsub-js';
-import {Events} from './Events';
+import Events from './Events';
 import mui from 'material-ui';
 
 var {Card} = mui;

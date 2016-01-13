@@ -30,12 +30,12 @@ export default class ProjectExplorer extends React.Component{
           }],
           files:[{
             name:'render.js',
-            mode:'js',
+            mode:'javascript',
             content:'function(){console.log(\'something\')}'
           },
           {
             name:'update.js',
-            mode:'js',
+            mode:'javascript',
             content:'function(){console.log(\'something\')}'
           }
         ]
