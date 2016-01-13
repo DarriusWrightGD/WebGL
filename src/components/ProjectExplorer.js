@@ -53,7 +53,7 @@ export default class ProjectExplorer extends React.Component{
             color:'white',
             background:'#141414',
             height:445,
-            border:''
+            borderRight:'1px solid grey'
            }}>
             <Folder folder={this.state.fileStructure} />
           </div>

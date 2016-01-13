@@ -6,7 +6,7 @@ var AppBar = mui.AppBar;
 export default class Header extends React.Component{
   render(){
     return(
-      <AppBar title='Shader App'/>
+      <AppBar title='Shader App' iconElementLeft={<div></div>}/>
     );
   }
 }

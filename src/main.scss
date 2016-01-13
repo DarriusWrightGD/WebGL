@@ -7,11 +7,6 @@ body{
 	margin:0;
 }
 
-.app-content{
-	margin-left: 40px;
-	margin-right: 40px;
-}
-
 .gl-preview-container{
 	@media screen and (max-width: 1250px ){
 		display: table;
@@ -28,24 +23,7 @@ body{
 		margin-bottom: 20px;
 }
 
-.project-explorer{
-//	display: inline-block;
-	background: #161616;
-	border-right: 3px solid grey;
-	height: 465px;
-	margin-top: 41px;
-	width: 20%;
-	color:white;
-	vertical-align: top;
-}
 
-
-.error-log{
-	margin-left: 20px;
-	vertical-align: middle;
-	display: table-cell;
-	margin: auto;
-}
 
 .error-log-text{
 	vertical-align: top;
@@ -54,10 +32,6 @@ body{
 .project-explorer-text
 {
 	vertical-align: top;
-}
-
-.inline-block{
-	display: inline-block;
 }
 
 .folder{

@@ -65,8 +65,11 @@ export default class EditorLog extends React.Component{
         </div>
     }
     return (
-      <Card className='shader-log'>
-        <h2>Error Log</h2>
+      <Card style={{
+        margin:'auto',
+        width: '90%'
+      }}>
+        <h2 style={{marginLeft:20}}>Error Log</h2>
         {errorLog}
       </Card>
     );
