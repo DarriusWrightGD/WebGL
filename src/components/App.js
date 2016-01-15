@@ -1,29 +1,18 @@
 import React from 'react';
+import {Component,PropTypes} from 'react';
 import Editor from './Editor';
 import EditorLog from './EditorLog';
 import HelloPoint from './demos/HelloPoint';
 import Header from './Header';
 
 import mui from 'material-ui';
-import ShaderAppTheme from './../themes/ShaderAppTheme';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
 
-export default class App extends React.Component{
 
-  constructor(props){
-    super(props);
-  }
+class App extends Component{
 
-  static get childContextTypes(){
-    return {
-      muiTheme:React.PropTypes.object
-    };
-  }
-
-  getChildContext(){
-    return {
-      muiTheme: ThemeManager.getMuiTheme(ShaderAppTheme)
-    }
+  constructor(props, context){
+    super(props,context);
+    var {store} = context;
   }
 
   render(){
@@ -56,3 +45,9 @@ export default class App extends React.Component{
       );
   }
 }
+
+App.contextTypes = {
+  store: PropTypes.object
+}
+
+export default App;
