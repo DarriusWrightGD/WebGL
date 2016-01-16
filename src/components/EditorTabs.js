@@ -38,8 +38,7 @@ export default class EditorTabs extends Component{
     var state = store.getState();
     var tabs = state.editor.tabs.map((t)=>{
       return (<Tab key={t.key} value={t.props.value} label={t.props.label} onClick = {function(){
-                const {store} = this.context;
-                store.dispatch({type:Events.fileSelectedEvent, guid:this.props.value});
+                store.dispatch({type:Events.fileSelectedEvent, file:t.props.file});
               }.bind(t)}>
         {t}
       </Tab>);

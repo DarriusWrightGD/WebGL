@@ -15,7 +15,7 @@ export default class EditorTab extends Tab{
     super(props, context);
     this.createAceEditor = this.createAceEditor.bind(this);
     this.onEditorLoad = this.onEditorLoad.bind(this);
-    
+
     this.sharedProps = {
       height: '445px',
       width: '100%',

@@ -11,14 +11,15 @@ import style from './../style/MainStyle';
 export default class File extends Component{
   constructor(props){
     super(props);
-    this.state = {file: this.props.file};
   }
 
   render(){
     const {store} = this.context;
     return(
-      <div className='file' onClick={()=>{store.dispatch({ type : Events.fileSelectedEvent,file: this.state.file})}}>
-        <span><FileIcon style={style.projectIcon}/><span className='project-explorer-text'>{this.state.file.name}</span></span>
+      <div className='file' onClick={()=>{
+        store.dispatch({ type : Events.fileSelectedEvent,file: this.props.file})
+      }}>
+        <span><FileIcon style={style.projectIcon}/><span className='project-explorer-text'>{this.props.file.name}</span></span>
       </div>
     );
   }
