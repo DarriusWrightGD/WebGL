@@ -31,6 +31,16 @@ module.exports = {
         include: path.join(__dirname, 'src'),
         loader: 'style!css!sass'
       },
+      {
+        test:/\.scss/,
+        include:path.join(__dirname, 'node_modules/mdi/scss'),
+        loader: 'style!css!sass'
+      },
+      {
+         test: /\.(eot|woff|woff2|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9][0-9])?$/,
+         include: path.join(__dirname, 'node_modules/mdi/fonts'),
+         loader: "file"
+      }
     ]
   }
 };

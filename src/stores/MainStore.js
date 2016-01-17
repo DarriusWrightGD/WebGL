@@ -45,12 +45,14 @@ var initialState = {
       }],
       files:[]
   },
-  errors:[],
-  fileSelected:{},
   editor:{
     tabs: [defaultTab],
     defaultTab: defaultTab,
-    currentTab: defaultTabGuid
+    currentTab: defaultTabGuid,
+    errorLog:{
+      messages:['One error', 'Two error', 'three error']
+    },
+    activePopOver:''
   },
 }
 
@@ -63,6 +65,8 @@ module.exports = {
         break;
       case Events.removeFileEvent:
         return removeFile.handle(state,action);
+      case Events.errorEvent:
+        return addError.handle(state, action);
       default:
         return state;
     }

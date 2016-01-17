@@ -1,25 +1,26 @@
 import Colors from 'material-ui/lib/styles/colors';
 
+var icon = {
+  width:19,
+  height:19,
+  marginRight:5,
+  fill: Colors.white
+}
 
 module.exports ={
   errorIcon: {
-    width:19,
-    height:19,
-    marginRight:0,
+    ...icon,
     marginLeft:10,
     marginBottom:20,
     fill: Colors.redA400
   },
+  addFileIcon:{
+    ...icon
+  },
   removeIcon:{
-    width:19,
-    height:19,
-    marginRight:5,
-    fill: Colors.white
+    ...icon
   },
   projectIcon:{
-    width:19,
-    height:19,
-    marginRight:5,
-    fill: Colors.white
+    ...icon
   }
 }

@@ -22,12 +22,12 @@ class App extends Component{
           <div>
             <div style={{display:'flex',
               flexFlow:'row wrap',
-              maxWidth:1400,
+              maxWidth:1300,
               width:'100%',
               margin: '10px auto 10px'
               }}>
               <div style={{
-                flexGrow:3
+                flexGrow:4
               }}>
                 <Editor />
               </div>
