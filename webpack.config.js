@@ -31,14 +31,24 @@ module.exports = {
         include: path.join(__dirname, 'src'),
         loader: 'style!css!sass'
       },
+      // {
+      //   test:/\.scss/,
+      //   include:path.join(__dirname, 'node_modules/mdi/scss'),
+      //   loader: 'style!css!sass'
+      // },
+      // {
+      //    test: /\.(eot|woff|woff2|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9][0-9])?$/,
+      //    include: path.join(__dirname, 'node_modules/mdi/fonts'),
+      //    loader: "file"
+      // },
       {
-        test:/\.scss/,
-        include:path.join(__dirname, 'node_modules/mdi/scss'),
-        loader: 'style!css!sass'
+        test:/\.css/,
+        include:path.join(__dirname, 'node_modules/material-design-icons/iconfont'),
+        loader: 'style!css!less'
       },
       {
          test: /\.(eot|woff|woff2|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9][0-9])?$/,
-         include: path.join(__dirname, 'node_modules/mdi/fonts'),
+         include: path.join(__dirname, 'node_modules/material-design-icons/iconfont'),
          loader: "file"
       }
     ]

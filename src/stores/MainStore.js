@@ -4,8 +4,8 @@ import EditorTab from '../components/EditorTab';
 import Guid from '../util/Guid';
 import RemoveIcon from 'material-ui/lib/svg-icons/content/clear';
 import style from '../style/MainStyle';
-import selectFile from './util/SelectFileHandler';
-import removeFile from './util/RemoveFileHandler';
+import selectFile from './reducers/SelectFileHandler';
+import removeFile from './reducers/RemoveFileHandler';
 
 var defaultTabGuid = Guid.generate();
 var defaultFile = { name:'Start coding', mode:'text' ,content:'Select/create a file in the project explorer to get started'};
@@ -14,43 +14,43 @@ var defaultTab = <EditorTab value={defaultTabGuid} key={'StartCoding'} file={def
 }/>;
 
 var initialState = {
-    project:{
-      name:'ShaderApp',
-      folders:[{
-        name:'Assets',
+    editor:{
+      project:{
+        name:'ShaderApp',
         folders:[{
-          name:'Shaders',
+          name:'Assets',
+          folders:[{
+            name:'Shaders',
+            files:[{
+              name:'vertex.glsl',
+              mode:'glsl',
+              content:'void main(){}'
+            },
+            {
+              name:'fragment.glsl',
+              mode:'glsl',
+              content:'void main(){}'
+            }]
+          }],
           files:[{
-            name:'vertex.glsl',
-            mode:'glsl',
-            content:'void main(){}'
+            name:'render.js',
+            mode:'javascript',
+            content:'function(){console.log(\'something\')}'
           },
           {
-            name:'fragment.glsl',
-            mode:'glsl',
-            content:'void main(){}'
-          }]
+            name:'update.js',
+            mode:'javascript',
+            content:'function(){console.log(\'something\')}'
+          }
+        ]
         }],
-        files:[{
-          name:'render.js',
-          mode:'javascript',
-          content:'function(){console.log(\'something\')}'
-        },
-        {
-          name:'update.js',
-          mode:'javascript',
-          content:'function(){console.log(\'something\')}'
-        }
-      ]
-      }],
-      files:[]
-  },
-  editor:{
+        files:[]
+    },
     tabs: [defaultTab],
     defaultTab: defaultTab,
     currentTab: defaultTabGuid,
     errorLog:{
-      messages:['One error', 'Two error', 'three error']
+      messages:[]
     },
     activePopOver:''
   },

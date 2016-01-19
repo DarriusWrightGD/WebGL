@@ -7,7 +7,7 @@ import ShaderAppTheme from './themes/ShaderAppTheme';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Provider from './components/Provider';
 
-require('mdi/scss/materialdesignicons.scss');
+require('material-design-icons/iconfont/material-icons.css');
 require('./main.scss');
 
 var store = createStore(shaderApp);

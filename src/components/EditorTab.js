@@ -7,7 +7,6 @@ import style from '../style/MainStyle';
 import AceEditor from 'react-ace';
 
 import _ from 'lodash';
-
 var {Tab} = mui;
 
 export default class EditorTab extends Tab{

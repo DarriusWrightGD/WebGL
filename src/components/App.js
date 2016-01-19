@@ -5,9 +5,6 @@ import EditorLog from './EditorLog';
 import HelloPoint from './demos/HelloPoint';
 import Header from './Header';
 
-import mui from 'material-ui';
-
-
 class App extends Component{
 
   constructor(props, context){

@@ -1,9 +1,10 @@
 import React from 'react';
-import File from './File.js'
-import ClosedFolderIcon from 'material-ui/lib/svg-icons/file/folder';
-import OpenFolderIcon from 'material-ui/lib/svg-icons/file/folder-open';
+import File from './File.js';
 import Colors from 'material-ui/lib/styles/colors';
-import style from './../style/MainStyle'
+import style from './../style/MainStyle';
+import mui from 'material-ui';
+
+var {FontIcon} = mui;
 
 export default class Folder extends React.Component{
   constructor(props){
@@ -29,12 +30,11 @@ export default class Folder extends React.Component{
       })
     }
 
-
     var folderIcon;
     var folderContent;
 
     if(this.state.open){
-      folderIcon = (<OpenFolderIcon style={style.projectIcon} />);
+      folderIcon = (<FontIcon style={{color:'white', verticalAlign:'bottom'}} className='material-icons'>folder_open</FontIcon>);
       folderContent = <div>
         <div>
           {foldersView}
@@ -44,14 +44,26 @@ export default class Folder extends React.Component{
         </div>
       </div>
     }else{
-      folderIcon = (<ClosedFolderIcon style={style.projectIcon}/>);
+      folderIcon = (<FontIcon style={{color:'white', verticalAlign:'bottom'}} className='material-icons'>folder</FontIcon>);
     }
-
-
+    var clearButton;
 
     return(
       <div className='folder'>
-        <span onClick = {this.toggleOpen}>{folderIcon}<span className='project-explorer-text'>{folder.name}</span></span>
+        <div
+          style={{width:'100%', background:this.hover ? 'grey': 'none'}}
+          onMouseOver={()=>{this.hover = true; this.forceUpdate();}}
+          onMouseOut={()=>{this.hover = false; this.forceUpdate();}}>
+        <span
+         onClick = {this.toggleOpen}>{folderIcon}<span style={{fontFamily:'Roboto, sans-serif'}}>{folder.name}</span>
+         </span>
+         <div style={{display:this.hover ? 'inline' : 'none'}}>
+           <FontIcon className='material-icons'
+             style={{color:'red',position:'absolute',right:0, verticalAlign:'middle', textAlign:'right'}}>
+             clear
+           </FontIcon>
+         </div>
+         </div>
         {folderContent}
       </div>
     );
@@ -62,12 +74,16 @@ export default class Folder extends React.Component{
   }
 
   render(){
+    //var {store} = this.context;
+    //folder = store.getState().
     let folderView = this.traverseFolder(this.state.folder);
-
     return(
       <div>
         {folderView}
       </div>
     );
   }
+}
+Folder.contextTypes = {
+  store:React.PropTypes.object
 }

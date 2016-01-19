@@ -7,7 +7,7 @@ import mui from 'material-ui';
 //import FontIcon from 'material-ui/lib/font-icon';
 import Colors from 'material-ui/lib/styles/colors';
 
-var {Card,Tab,Tabs,FlatButton, FontIcon} = mui;
+var {Card,Tab,Tabs,FlatButton, FontIcon, IconButton} = mui;
 
 class ProjectExplorer extends Component{
   constructor(props, context)
@@ -36,26 +36,27 @@ class ProjectExplorer extends Component{
               height:445,
               borderRight:'1px solid grey'
              }}>
-              <Folder folder={state.project} />
-              <FlatButton
-                style={{
-                  position:'absolute',
-                  color:'white',
-                  bottom:10,
-                  left:5
-                }}
-                label={<span>
-                        <FontIcon
-                          style={{color:'white',height:15,width:15}}
-                          className="mdi mdi-plus-circle"
-                          />
-                       </span>
-                      }
-                onClick={()=>{}}
-              >
-
-              </FlatButton>
-
+              <Folder folder={state.editor.project} />
+              <div style={{
+                    position:'absolute',
+                    color:'white',
+                    bottom:10,
+                    left:'25%',
+                    borderTop: '1px solid grey'
+                  }}>
+                  <IconButton
+                    style={{cursor:'pointer'}}
+                    iconClassName="material-icons"
+                    tooltip='Add File'>
+                    <span style={{color:'white'}}>note_add</span>
+                  </IconButton>
+                  <IconButton
+                    style={{cursor:'pointer'}}
+                    iconClassName="material-icons"
+                    tooltip='Add Folder'>
+                    <span style={{color:'white'}}>create_new_folder</span>
+                  </IconButton>
+              </div>
             </div>
           </Tab>
         </Tabs>

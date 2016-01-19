@@ -1,11 +1,8 @@
 import React from 'react';
 import {Component,PropTypes} from 'react';
 import Events from './Events';
-import PubSub from 'pubsub-js';
-import mui from 'material-ui'
 import FontIcon from 'material-ui/lib/font-icon';
 import Colors from 'material-ui/lib/styles/colors';
-import FileIcon from 'material-ui/lib/svg-icons/editor/insert-drive-file';
 import style from './../style/MainStyle';
 
 export default class File extends Component{
@@ -19,7 +16,22 @@ export default class File extends Component{
       <div className='file' onClick={()=>{
         store.dispatch({ type : Events.fileSelectedEvent,file: this.props.file})
       }}>
-        <span><FileIcon style={style.projectIcon}/><span className='project-explorer-text'>{this.props.file.name}</span></span>
+        <div
+          style={{width:'100%',background:this.hover ? 'grey': 'none'}}
+          onMouseOver={()=>{this.hover = true; this.forceUpdate();}}
+          onMouseOut={()=>{this.hover = false; this.forceUpdate();}}
+          >
+          <span>
+            <FontIcon className='material-icons' style={{color:'white',verticalAlign:'bottom'}}>insert_drive_file</FontIcon>
+            <span style={{fontFamily:'Roboto, sans-serif'}}>{this.props.file.name}</span>
+          </span>
+          <div style={{display:this.hover ? 'inline' : 'none'}}>
+            <FontIcon className='material-icons'
+              style={{color:'red',position:'absolute',right:0, verticalAlign:'middle', textAlign:'right'}}>
+              clear
+            </FontIcon>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import PubSub from 'pubsub-js';
 import Events from './Events';
 import mui from 'material-ui';
 import ErrorIcon from 'material-ui/lib/svg-icons/content/clear';

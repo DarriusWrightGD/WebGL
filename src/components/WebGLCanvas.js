@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Events from './Events';
-import PubSub from 'pubsub-js';
 import MainLoop from 'mainloop.js';
 
 export default class WebGLCanvas extends React.Component{
@@ -15,17 +14,9 @@ export default class WebGLCanvas extends React.Component{
   }
 
   componentWillMount(){
-    this.vsEvent = PubSub.subscribe(Events.vertexShaderUpdateEvent, function(eventType,text){
-      this.vertexShaderChanged(text);
-    }.bind(this));
-    this.fsEvent = PubSub.subscribe(Events.fragmentShaderUpdateEvent, function(eventType,text){
-      this.fragmentShaderChanged(text);
-    }.bind(this));
   }
 
   componentWillUnmount(){
-    PubSub.unsubscribe(this.vsEvent);
-    PubSub.unsubscribe(this.fsEvent);
     this.loop.stop();
   }
 
@@ -96,13 +87,12 @@ export default class WebGLCanvas extends React.Component{
       var success = this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS);
 
       if(!success){
-        PubSub.publish(Events.shaderErrorEvent, 'Program issue : ' + this.gl.getProgramInfoLog(this.program));
         this.gl.deleteProgram(this.program);
       }else{
         this.gl.useProgram(this.program);
       }
     }catch(e){
-      PubSub.publish(Events.shaderErrorEvent, e.message);
+
     }
   }
 

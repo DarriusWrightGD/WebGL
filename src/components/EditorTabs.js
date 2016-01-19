@@ -1,7 +1,6 @@
 import React from 'react';
 import {Component,PropTypes} from 'react';
 import AceEditor from 'react-ace';
-import PubSub from 'pubsub-js';
 import Events from './Events';
 import _ from 'lodash';
 import Guid from './../util/Guid'
