@@ -8,8 +8,8 @@ import selectFile from './reducers/SelectFileHandler';
 import removeFile from './reducers/RemoveFileHandler';
 
 var defaultTabGuid = Guid.generate();
-var defaultFile = { name:'Start coding', mode:'text' ,content:'Select/create a file in the project explorer to get started'};
-var defaultTab = <EditorTab value={defaultTabGuid} key={'StartCoding'} file={defaultFile} label={
+var defaultFile = { name:'StartCoding', mode:'text', content:'Select/create a file in the project explorer to get started'};
+var defaultTab = <EditorTab value={defaultTabGuid} file={defaultFile} label={
   <span>{defaultFile.name}</span>
 }/>;
 

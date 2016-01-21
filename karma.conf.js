@@ -13,10 +13,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/material-ui/**/*.js',
       'src/components/**/*.js',
       'src/stores/**/*.js',
-      'tests/**/*.js'
+      'test/**/*.js'
     ],
 
     // list of files to exclude
@@ -26,10 +25,9 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'node_modules/material-ui/**/*.js': ['browserify'],
       'src/components/**/*.js' : ['browserify'],
       'src/stores/**/*.js' : ['browserify'],
-      'tests/**/*.js' : ['browserify']
+      'test/**/*.js' : ['browserify']
     },
 
     // test results reporter to use
@@ -75,8 +73,6 @@ module.exports = function(config) {
         return file.originalPath;
       }
     },
-
-
 
     plugins: [
       'karma-mocha',

@@ -4,10 +4,18 @@ import RemoveIcon from 'material-ui/lib/svg-icons/content/clear';
 import mui from 'material-ui';
 import Events from './Events';
 import style from '../style/MainStyle';
-import AceEditor from 'react-ace';
+var AceEditor;// from 'react-ace';
 
 import _ from 'lodash';
 var {Tab} = mui;
+
+if(typeof window != 'undefined'){
+  AceEditor = require('react-ace');
+  require('brace/mode/glsl');
+  require('brace/mode/javascript');
+  require('brace/mode/text');
+  require('brace/theme/chaos');
+}
 
 export default class EditorTab extends Tab{
   constructor(props, context){
@@ -21,6 +29,11 @@ export default class EditorTab extends Tab{
       theme: 'chaos',
       fontSize: 14,
     }
+  }
+
+  componentDidMount(){
+    this.editor=this.createAceEditor(this.props.file.name, this.props.file.content, this.props.file.mode);
+    this.forceUpdate();
   }
 
   onEditorLoad(editor){
@@ -46,7 +59,7 @@ export default class EditorTab extends Tab{
 
     return (
       <div>
-        {this.createAceEditor(this.props.file.name, this.props.file.content, this.props.file.mode)}
+        {this.editor}
       </div>
     );
   }

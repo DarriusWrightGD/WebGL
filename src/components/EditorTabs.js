@@ -1,18 +1,11 @@
 import React from 'react';
 import {Component,PropTypes} from 'react';
-import AceEditor from 'react-ace';
 import Events from './Events';
 import _ from 'lodash';
 import Guid from './../util/Guid'
 import mui from 'material-ui';
 import RemoveIcon from 'material-ui/lib/svg-icons/content/clear';
 import style from '../style/MainStyle';
-
-
-import 'brace/mode/glsl';
-import 'brace/mode/javascript';
-import 'brace/mode/text';
-import 'brace/theme/chaos';
 
 var {Tab, Tabs} = mui;
 
