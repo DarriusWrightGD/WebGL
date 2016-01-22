@@ -41,12 +41,6 @@ module.exports = {
          include: path.join(__dirname, 'node_modules/material-design-icons/iconfont'),
          loader: "file"
       }
-      // ,
-      // {
-      //   test:/\-test.js/,
-      //   include: path.join(__dirname, 'tests/'),
-      // }
-
     ]
   }
 };

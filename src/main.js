@@ -1,3 +1,4 @@
+// import "app-module-path/register";
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App';
