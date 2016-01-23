@@ -1,9 +1,9 @@
 
 import _ from 'lodash';
 import React from 'react';
-import Guid from '../../util/Guid';
-import EditorTab from '../../components/EditorTab';
-import RemoveTab from '../../components/RemoveTab';
+import Guid from 'util/Guid';
+import EditorTab from 'components/EditorTab';
+import RemoveTab from 'components/RemoveTab';
 
 function removeDefaultTab(state){
 
@@ -44,7 +44,7 @@ function addTab(state, action){
 
 
 module.exports = {
-  handle : function(state, action){
+  reduce : function(state, action){
     return addTab(state,action);
   }
 }

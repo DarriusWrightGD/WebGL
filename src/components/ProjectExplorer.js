@@ -2,7 +2,7 @@ import React from 'react';
 import {Component, PropTypes} from 'react';
 import Folder from './Folder';
 import AddFileIcon from 'material-ui/lib/svg-icons/content/add-circle';
-import style from '../style/MainStyle';
+import style from 'style/MainStyle';
 import mui from 'material-ui';
 //import FontIcon from 'material-ui/lib/font-icon';
 import Colors from 'material-ui/lib/styles/colors';

@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
-import style from '../../style/MainStyle';
+import style from 'style/MainStyle';
 
 module.exports = {
-  handle : function(state,action){
+  reduce : function(state,action){
     var guid = action.guid;
     var filteredTabs = _.filter(state.editor.tabs,(tab)=>{
       if(tab.props.value != guid)

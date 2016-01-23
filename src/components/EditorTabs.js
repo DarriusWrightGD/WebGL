@@ -2,10 +2,10 @@ import React from 'react';
 import {Component,PropTypes} from 'react';
 import Events from './Events';
 import _ from 'lodash';
-import Guid from './../util/Guid'
+import Guid from 'util/Guid'
 import mui from 'material-ui';
 import RemoveIcon from 'material-ui/lib/svg-icons/content/clear';
-import style from '../style/MainStyle';
+import style from 'style/MainStyle';
 
 var {Tab, Tabs} = mui;
 

@@ -3,6 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval-source-map',
+
   entry: {
     main: [
       'webpack-dev-server/client?http://localhost:8080',
@@ -10,15 +11,27 @@ module.exports = {
       './src/main.js'
     ]
   },
+
   output:{
     filename: './[name].js',
     path: path.join(__dirname,'public'),
     publicPath:'/public/'
   },
+
   plugins:[
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin()
   ],
+
+  resolve: {
+          root: __dirname,
+          modulesDirectories: [
+            'src',
+            'node_modules'
+          ],
+          extensions: ['', '.js', '.jsx']
+  },
+
   module: {
     loaders: [
       {

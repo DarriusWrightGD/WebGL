@@ -3,7 +3,7 @@ import {Component,PropTypes} from 'react';
 import Events from './Events';
 import FontIcon from 'material-ui/lib/font-icon';
 import Colors from 'material-ui/lib/styles/colors';
-import style from './../style/MainStyle';
+import style from 'style/MainStyle';
 
 export default class File extends Component{
   constructor(props){

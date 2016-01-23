@@ -1,6 +1,6 @@
 import React from 'react';
 import ClearIcon from 'material-ui/lib/svg-icons/content/clear';
-import style from '../style/MainStyle';
+import style from 'style/MainStyle';
 import Events from './Events';
 
 export default class RemoveTab extends React.Component{

@@ -3,7 +3,7 @@ import {Component, PropTypes} from 'react'
 import RemoveIcon from 'material-ui/lib/svg-icons/content/clear';
 import mui from 'material-ui';
 import Events from './Events';
-import style from '../style/MainStyle';
+import style from 'style/MainStyle';
 var AceEditor;// from 'react-ace';
 
 import _ from 'lodash';

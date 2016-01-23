@@ -2,7 +2,7 @@ import React from 'react';
 import Events from './Events';
 import mui from 'material-ui';
 import ErrorIcon from 'material-ui/lib/svg-icons/content/clear';
-import style from '../style/MainStyle';
+import style from 'style/MainStyle';
 
 var {Card} = mui;
 

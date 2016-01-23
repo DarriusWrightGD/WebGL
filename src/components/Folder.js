@@ -1,7 +1,7 @@
 import React from 'react';
 import File from './File.js';
 import Colors from 'material-ui/lib/styles/colors';
-import style from './../style/MainStyle';
+import style from 'style/MainStyle';
 import mui from 'material-ui';
 
 var {FontIcon} = mui;
@@ -17,10 +17,10 @@ export default class Folder extends React.Component{
   traverseFolder(folder){
     var foldersView = [];
     if(folder.folders){
-      folder.folders.forEach(function(f, index){
+      folder.folders.forEach((f, index)=>{
         var v = <Folder folder = {f} key = {index}/>;
         foldersView.push(v);
-      }.bind(this));
+      });
     }
 
     var fileViews = []
@@ -30,6 +30,10 @@ export default class Folder extends React.Component{
       })
     }
 
+    console.log('Files : ',fileViews.length);
+    fileViews.forEach((f)=>{
+      console.log("This is my file:",f.props)
+    });
     var folderIcon;
     var folderContent;
 
@@ -74,8 +78,6 @@ export default class Folder extends React.Component{
   }
 
   render(){
-    //var {store} = this.context;
-    //folder = store.getState().
     let folderView = this.traverseFolder(this.state.folder);
     return(
       <div>

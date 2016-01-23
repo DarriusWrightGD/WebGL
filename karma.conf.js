@@ -1,5 +1,7 @@
 // Karma configuration
 // Generated on Sun Jan 17 2016 22:47:16 GMT-0700 (MST)
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = function(config) {
   config.set({
@@ -9,13 +11,16 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'browserify'],
+    frameworks: ['mocha'],
 
     // list of files / patterns to load in the browser
+    // files: [
+    //   'src/components/**/*.js',
+    //   'src/stores/**/*.js',
+    //   'test/**/*.js'
+    // ],
     files: [
-      'src/components/**/*.js',
-      'src/stores/**/*.js',
-      'test/**/*.js'
+          'tests.webpack.js',
     ],
 
     // list of files to exclude
@@ -25,63 +30,73 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/components/**/*.js' : ['browserify'],
-      'src/stores/**/*.js' : ['browserify'],
-      'test/**/*.js' : ['browserify']
+          'tests.webpack.js': [ 'webpack', 'sourcemap' ]
     },
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 
-    // web server port
     port: 9876,
 
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-    // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
 
-    browserify: {
-      debug: true,
-      transform: ['babelify']
-    },
+    webpack:{
+          plugins: [
+            new webpack.ProvidePlugin({
+              $: 'jquery',
+              jQuery: 'jquery',
+              jquery: 'jquery',
+              'window.jQuery': 'jquery',
+              'window.jquery': 'jquery',
+              'window.$': 'jquery',
+            })
+          ],
 
-    babelPreprocessor: {
-      options: {
-        presets: ['es2015', 'react', 'stage-0', 'stage-1', 'stage-2'],
-        sourceMap: 'inline'
-      },
-      filename: function (file) {
-        return file.originalPath.replace(/\.js$/, '.es5.js');
-      },
-      sourceFileName: function (file) {
-        return file.originalPath;
-      }
+          resolve: {
+            root: __dirname,
+            modulesDirectories: [
+              'src',
+              'node_modules'
+            ],
+            extensions: ['', '.js', '.jsx']
+          },
+
+          module: {
+            loaders: [
+            {
+              test: /\.jsx?$/,
+              exclude: /node_modules/,
+              loader: 'babel'
+            },
+            {
+              test: /\.css$/,
+              loader: 'style!css'
+            },
+            {
+              test: /\.(eot|woff|woff2|ttf|svg)$/,
+              loader: 'file'
+            }
+          ]
+        },
     },
 
     plugins: [
+      'karma-webpack',
       'karma-mocha',
-      'karma-browserify',
-      'karma-babel-preprocessor',
       'karma-sourcemap-loader',
       'karma-chrome-launcher'
     ],
 
+    webpackServer:{
+          noInfo: true
+    },
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity

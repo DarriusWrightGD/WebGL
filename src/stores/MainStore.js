@@ -4,8 +4,7 @@ import EditorTab from '../components/EditorTab';
 import Guid from '../util/Guid';
 import RemoveIcon from 'material-ui/lib/svg-icons/content/clear';
 import style from '../style/MainStyle';
-import selectFile from './reducers/SelectFileHandler';
-import removeFile from './reducers/RemoveFileHandler';
+import editorReducer from './reducers/EditorReducer';
 
 var defaultTabGuid = Guid.generate();
 var defaultFile = { name:'StartCoding', mode:'text', content:'Select/create a file in the project explorer to get started'};
@@ -52,7 +51,6 @@ var initialState = {
     errorLog:{
       messages:[]
     },
-    activePopOver:''
   },
 }
 
@@ -61,12 +59,10 @@ module.exports = {
   shaderApp : function(state = initialState, action){
     switch(action.type){
       case Events.fileSelectedEvent:
-        return selectFile.handle(state,action);
-        break;
       case Events.removeFileEvent:
-        return removeFile.handle(state,action);
       case Events.errorEvent:
-        return addError.handle(state, action);
+        return editorReducer.reduce(state,action);
+      break;
       default:
         return state;
     }
