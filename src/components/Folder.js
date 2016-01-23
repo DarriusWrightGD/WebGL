@@ -3,22 +3,23 @@ import File from './File.js';
 import Colors from 'material-ui/lib/styles/colors';
 import style from 'style/MainStyle';
 import mui from 'material-ui';
+import Events from './Events';
 
 var {FontIcon} = mui;
 
 export default class Folder extends React.Component{
   constructor(props){
     super(props);
-    this.state = {folder: this.props.folder, open:false};
     this.traverseFolder = this.traverseFolder.bind(this)
     this.toggleOpen = this.toggleOpen.bind(this);
+    this.getPath = this.getPath.bind(this);
   }
 
   traverseFolder(folder){
     var foldersView = [];
     if(folder.folders){
       folder.folders.forEach((f, index)=>{
-        var v = <Folder folder = {f} key = {index}/>;
+        var v = <Folder folder = {f} path={this.getPath()} key = {index}/>;
         foldersView.push(v);
       });
     }
@@ -30,14 +31,10 @@ export default class Folder extends React.Component{
       })
     }
 
-    console.log('Files : ',fileViews.length);
-    fileViews.forEach((f)=>{
-      console.log("This is my file:",f.props)
-    });
     var folderIcon;
     var folderContent;
 
-    if(this.state.open){
+    if(this.props.folder.open){
       folderIcon = (<FontIcon style={{color:'white', verticalAlign:'bottom'}} className='material-icons'>folder_open</FontIcon>);
       folderContent = <div>
         <div>
@@ -73,12 +70,18 @@ export default class Folder extends React.Component{
     );
   }
 
+  getPath(){
+    var path = this.props.path === undefined ? this.props.folder.name : this.props.path + '/' + this.props.folder.name;
+    return path;
+  }
+
   toggleOpen(){
-    this.setState({open:!this.state.open});
+    const {store} = this.context;
+    store.dispatch({type:Events.folderClickedEvent, path:this.getPath()});
   }
 
   render(){
-    let folderView = this.traverseFolder(this.state.folder);
+    let folderView = this.traverseFolder(this.props.folder);
     return(
       <div>
         {folderView}

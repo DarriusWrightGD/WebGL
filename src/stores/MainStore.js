@@ -16,9 +16,12 @@ var initialState = {
     editor:{
       project:{
         name:'ShaderApp',
+        open:true,
         folders:[{
+          open: true,
           name:'Assets',
           folders:[{
+            open:true,
             name:'Shaders',
             files:[{
               name:'vertex.glsl',
@@ -61,6 +64,7 @@ module.exports = {
       case Events.fileSelectedEvent:
       case Events.removeFileEvent:
       case Events.errorEvent:
+      case Events.folderClickedEvent:
         return editorReducer.reduce(state,action);
       break;
       default:
