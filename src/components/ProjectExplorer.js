@@ -1,11 +1,11 @@
 import React from 'react';
 import {Component, PropTypes} from 'react';
 import Folder from './Folder';
-import AddFileIcon from 'material-ui/lib/svg-icons/content/add-circle';
 import style from 'style/MainStyle';
 import mui from 'material-ui';
-//import FontIcon from 'material-ui/lib/font-icon';
 import Colors from 'material-ui/lib/styles/colors';
+import AddFolderButton from './AddFolderButton';
+import AddFileButton from './AddFileButton';
 
 var {Card,Tab,Tabs,FlatButton, FontIcon, IconButton} = mui;
 
@@ -36,7 +36,7 @@ class ProjectExplorer extends Component{
               height:445,
               borderRight:'1px solid grey'
              }}>
-              <Folder folder={state.editor.project} />
+              <Folder folder={state.editor.projectExplorer.fileExplorer} />
               <div style={{
                     position:'absolute',
                     color:'white',
@@ -44,18 +44,8 @@ class ProjectExplorer extends Component{
                     left:'25%',
                     borderTop: '1px solid grey'
                   }}>
-                  <IconButton
-                    style={{cursor:'pointer'}}
-                    iconClassName="material-icons"
-                    tooltip='Add File'>
-                    <span style={{color:'white'}}>note_add</span>
-                  </IconButton>
-                  <IconButton
-                    style={{cursor:'pointer'}}
-                    iconClassName="material-icons"
-                    tooltip='Add Folder'>
-                    <span style={{color:'white'}}>create_new_folder</span>
-                  </IconButton>
+                  <AddFileButton/>
+                  <AddFolderButton/>
               </div>
             </div>
           </Tab>

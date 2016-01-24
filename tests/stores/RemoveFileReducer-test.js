@@ -1,7 +1,7 @@
 import {expect} from 'chai';
-import React from 'react'
-import EditorReducer from 'src/stores/reducers/EditorReducer';
-import deepFreeze from 'deep-freeze';
+import React from 'react';
+import RemoveFileReducer from 'src/stores/reducers/RemoveFileReducer';
+import SelectFileReducer from 'src/stores/reducers/SelectFileReducer';
 import EditorTab from 'src/components/EditorTab';
 import Events from 'src/components/Events';
 import Guid from 'util/Guid';
@@ -16,26 +16,23 @@ describe('RemoveFileReducer tests', ()=>{
   }/>;
   before(()=>{
     state = {
-      editor:{
         tabs:[defaultTab],
         defaultTab: defaultTab
-      }
     };
   });
 
   it('should remove tab from editor when remove event fired', ()=>{
-    var twoTabsState = EditorReducer.reduce(
-      EditorReducer.reduce(state, {type:Events.fileSelectedEvent, file:{name:'foo', content:'bar', mode:'text'}}),
+    var twoTabsState = SelectFileReducer.reduce(
+      SelectFileReducer.reduce(state, {type:Events.fileSelectedEvent, file:{name:'foo', content:'bar', mode:'text'}}),
       {
         type:Events.fileSelectedEvent, file:{name:'foo2', content:'bar2', mode:'text'}
       }
     );
 
-    var tabCount = twoTabsState.editor.tabs.length;
-    var tabId = twoTabsState.editor.tabs[tabCount-1].props.value;
+    var tabCount = twoTabsState.tabs.length;
+    var tabId = twoTabsState.tabs[tabCount-1].props.value;
 
-    deepFreeze(twoTabsState);
-    var removedTabState = EditorReducer.reduce(twoTabsState,{type:Events.removeFileEvent, guid:tabId});
-    expect(removedTabState.editor.tabs.length).to.equal(tabCount-1);
+    var removedTabState = RemoveFileReducer.reduce(twoTabsState,{type:Events.removeFileEvent, guid:tabId});
+    expect(removedTabState.tabs.length).to.equal(tabCount-1);
   });
 });

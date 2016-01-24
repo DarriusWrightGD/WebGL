@@ -5,39 +5,29 @@ import Guid from 'util/Guid';
 import EditorTab from 'components/EditorTab';
 import RemoveTab from 'components/RemoveTab';
 
-function removeDefaultTab(state){
-
-}
-
 function addTab(state, action){
   var file = action.file;
-  var tab = _.find(state.editor.tabs, function(t){ return t.key == file.name});
+  var tab = _.find(state.tabs, function(t){ return t.key == file.name});
   if(!tab)
   {
     var guid = Guid.generate();
 
-    var newTabs = _.filter(state.editor.tabs,(t)=>{
-      if(state.editor.defaultTab.props.value !== t.props.value ){
+    var newTabs = _.filter(state.tabs,(t)=>{
+      if(state.defaultTab.props.value !== t.props.value ){
         return t;
       }
     })
     return {
       ...state,
-      editor:{
-        ...state.editor,
-        tabs:[...newTabs, <EditorTab value={guid} key={file.name} file={file} label={<span>{file.name}
-              <RemoveTab tabGuid = {guid}/>
-        </span>} />],
-        currentTab:guid
-      },
+      tabs:[...newTabs, <EditorTab value={guid} key={file.name} file={file} label={<span>{file.name}
+        <RemoveTab tabGuid = {guid}/>
+      </span>} />],
+      currentTab:guid
     }
   }else{
     return {
       ...state,
-      editor:{
-        ...state.editor,
-        currentTab: tab.props.value
-      }
+      currentTab: tab.props.value
     }
   }
 }

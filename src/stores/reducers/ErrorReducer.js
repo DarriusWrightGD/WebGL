@@ -1,8 +1,20 @@
 import cloner from 'cloner';
+import Events from 'src/components/Events';
+var initialState = {
+  messages:[]
+};
+
 module.exports = {
-  reduce: function(state,action){
-    var newState = cloner.deep.copy(state);
-    newState.editor.errorLog.messages.push(action.message);
-    return newState;
+  reduce: function(state = initialState,action){
+    switch(action.type){
+      case Events.errorEvent:
+        return {
+          ...state,
+          messages: [...state.messages, action.message]
+        };
+      break;
+      default:
+      return state;
+    }
   }
 }

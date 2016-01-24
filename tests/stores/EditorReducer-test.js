@@ -1,6 +1,5 @@
 import React from 'react'
 import EditorReducer from 'src/stores/reducers/EditorReducer';
-import deepFreeze from 'deep-freeze';
 import {expect} from 'chai';
 import EditorTab from 'src/components/EditorTab';
 import Events from 'src/components/Events';
@@ -8,23 +7,41 @@ import Guid from 'util/Guid';
 
 describe('EditorReducer Tests', function(){
   var state;
-  var defaultTabGuid = Guid.generate();
-  var defaultFile = { name:'StartCoding', mode:'text', content:'Select/create a file in the project explorer to get started'};
-  var defaultTab = <EditorTab value={defaultTabGuid} file={defaultFile} label={
-    <span>{defaultFile.name}</span>
-  }/>;
   before(()=>{
     state = {
-      editor:{
-        tabs:[defaultTab],
-        defaultTab: defaultTab
+      projectExplorer:{
+        fileExplorer:{
+          folders:[],
+          files:[]
+        },
+        addFileDialog:{
+          open:false
+        }
+      },
+      textEditor:{
+        tabs:[<EditorTab/>],
+        defaultTab:<EditorTab/>,
+        currentTabId:'fooId'
+      },
+      errorLog:{
+        messages:['fooError']
       }
-    };
+    }
   });
 
-  it('should return state for unknown event', ()=>{
-    var newState = EditorReducer.reduce(state, {type:'fooEvent'});
-    expect(newState).to.equal(state);
+  it('should set up error state correctly if initialstate populates it', ()=>{
+    var reducedState = EditorReducer.reduce(state,{});
+    expect(reducedState.errorLog).to.deep.equal(state.errorLog);
+  })
+
+  it('should set up the text editor correctly if initialstate populates it',()=>{
+    var reducedState = EditorReducer.reduce(state,{});
+    expect(reducedState.textEditor).to.deep.equal(state.textEditor);
+  })
+
+  it('should set up the project explorer if initialstate populates it', ()=>{
+    var reducedState = EditorReducer.reduce(state,{});
+    expect(reducedState.projectExplorer).to.deep.equal(state.projectExplorer);
   });
 
 })

@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import React from 'react'
-import EditorReducer from 'src/stores/reducers/EditorReducer';
-import deepFreeze from 'deep-freeze';
+import SelectFileReducer from 'src/stores/reducers/SelectFileReducer';
 import EditorTab from 'src/components/EditorTab';
 import File from 'src/components/File';
 import Events from 'src/components/Events';
@@ -17,25 +16,24 @@ describe('SelectFileReducer tests', ()=>{
   }/>;
   before(()=>{
     state = {
-      editor:{
         tabs:[defaultTab],
         defaultTab: defaultTab
-      }
     };
   });
 
   it('should add tab to editor tabs when selected file event fired, that is not the defaultTab', ()=>{
-    var tabCount = state.editor.tabs.length;
-    var newState = EditorReducer.reduce(state, {type:Events.fileSelectedEvent, file:{name:'foo', content:'bar', mode:'text'}});
-    expect(newState.editor.tabs.length).to.equal(tabCount);
-    expect(newState.editor.tabs[0].props.file.name == 'foo');
+    var tabCount = state.tabs.length;
+    var newState = SelectFileReducer.reduce(state, {type:Events.fileSelectedEvent, file:{name:'foo', content:'bar', mode:'text'}});
+
+    expect(newState.tabs.length).to.equal(tabCount);
+    expect(newState.tabs[0].props.file.name == 'foo');
   });
 
   it('should add multiple tabs to editor for multiple file selected events', ()=>{
-    var tabCount = state.editor.tabs.length;
-    var newState = EditorReducer.reduce(state, {type:Events.fileSelectedEvent, file:{name:'foo', content:'bar', mode:'text'}});
-    expect(newState.editor.tabs.length).to.equal(tabCount);
-    expect(newState.editor.tabs[0].props.file.name == 'foo');
+    var tabCount = state.tabs.length;
+    var newState = SelectFileReducer.reduce(state, {type:Events.fileSelectedEvent, file:{name:'foo', content:'bar', mode:'text'}});
+    expect(newState.tabs.length).to.equal(tabCount);
+    expect(newState.tabs[0].props.file.name === 'foo').to.be.true;
   });
 
 });

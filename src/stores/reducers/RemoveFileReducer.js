@@ -5,7 +5,7 @@ import style from 'style/MainStyle';
 module.exports = {
   reduce : function(state,action){
     var guid = action.guid;
-    var filteredTabs = _.filter(state.editor.tabs,(tab)=>{
+    var filteredTabs = _.filter(state.tabs,(tab)=>{
       if(tab.props.value != guid)
       {
         return tab;
@@ -15,20 +15,14 @@ module.exports = {
     if(filteredTabs.length > 0){
       return {
         ...state,
-        editor: {
-          ...state.editor,
-          tabs: filteredTabs,
-          currentTab: filteredTabs[0].props.value
-        }
+        tabs: filteredTabs,
+        currentTab: filteredTabs[0].props.value
       }
     }else{
       return {
         ...state,
-        editor: {
-          ...state.editor,
-          tabs: [state.editor.defaultTab],
-          currentTab: state.editor.defaultTab.props.value
-        }
+        tabs: [state.defaultTab],
+        currentTab: state.defaultTab.props.value
       }
     }
   }

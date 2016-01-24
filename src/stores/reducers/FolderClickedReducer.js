@@ -4,7 +4,7 @@ module.exports = {
   reduce: function(state, action){
     var newState = cloner.deep.copy(state);
     var folderNames = action.path.split('/');
-    var currentFolder = newState.editor.project;
+    var currentFolder = newState;
 
     for(let i = 0; i < folderNames.length-1;i++){
       if(currentFolder.name === folderNames[i]){
@@ -15,7 +15,7 @@ module.exports = {
         throw new Error(folderNames[i] + ', directory does not exist');
       }
     }
-    
+
     currentFolder.open = !currentFolder.open;
     return newState;
   }

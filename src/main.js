@@ -7,6 +7,8 @@ import {shaderApp} from './stores/MainStore'
 import ShaderAppTheme from './themes/ShaderAppTheme';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Provider from './components/Provider';
+var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
 
 require('material-design-icons/iconfont/material-icons.css');
 require('./main.scss');
