@@ -1,5 +1,5 @@
 import Events from 'src/components/Events';
-import FolderClickedReducer from './FolderClickedReducer';
+import folderClicked from './FolderClickedReducer';
 
 var initialState = {
   name:'ShaderApp',
@@ -36,14 +36,12 @@ var initialState = {
   files:[]
 };
 
-module.exports = {
-  reduce: function(state = initialState, action){
-    switch(action.type){
-      case Events.folderClickedEvent:
-        return FolderClickedReducer.reduce(state,action);
-      break;
-      default:
-        return state;
-    }
+export default function(state = initialState, action){
+  switch(action.type){
+    case Events.folderClickedEvent:
+      return folderClicked(state,action);
+    break;
+    default:
+      return state;
   }
 }

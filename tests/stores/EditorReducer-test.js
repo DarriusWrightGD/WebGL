@@ -1,5 +1,5 @@
 import React from 'react'
-import EditorReducer from 'src/stores/reducers/EditorReducer';
+import editor from 'src/stores/reducers/EditorReducer';
 import {expect} from 'chai';
 import EditorTab from 'src/components/EditorTab';
 import Events from 'src/components/Events';
@@ -30,17 +30,17 @@ describe('EditorReducer Tests', function(){
   });
 
   it('should set up error state correctly if initialstate populates it', ()=>{
-    var reducedState = EditorReducer.reduce(state,{});
+    var reducedState = editor(state,{});
     expect(reducedState.errorLog).to.deep.equal(state.errorLog);
   })
 
   it('should set up the text editor correctly if initialstate populates it',()=>{
-    var reducedState = EditorReducer.reduce(state,{});
+    var reducedState = editor(state,{});
     expect(reducedState.textEditor).to.deep.equal(state.textEditor);
   })
 
   it('should set up the project explorer if initialstate populates it', ()=>{
-    var reducedState = EditorReducer.reduce(state,{});
+    var reducedState = editor(state,{});
     expect(reducedState.projectExplorer).to.deep.equal(state.projectExplorer);
   });
 

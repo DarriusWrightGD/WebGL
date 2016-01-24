@@ -1,13 +1,10 @@
-import ProjectExplorerReducer from './ProjectExplorerReducer';
-import ErrorReducer from './ErrorReducer';
-import TextEditorReducer from './TextEditorReducer';
+import projectExplorer from './ProjectExplorerReducer';
+import errorLog from './ErrorReducer';
+import textEditor from './TextEditorReducer';
+import {combineReducers} from 'redux';
 
-module.exports = {
-  reduce : function(state, action){
-    return {
-      projectExplorer: ProjectExplorerReducer.reduce(state.projectExplorer,action),
-      textEditor: TextEditorReducer.reduce(state.textEditor,action),
-      errorLog: ErrorReducer.reduce(state.errorLog,action)
-    }
-  }
-}
+export default combineReducers({
+  projectExplorer,
+  textEditor,
+  errorLog
+});

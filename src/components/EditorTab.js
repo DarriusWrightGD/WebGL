@@ -54,9 +54,6 @@ export default class EditorTab extends Tab{
   }
 
   render(){
-    const {store} = this.context;
-    const state = store.getState();
-
     return (
       <div>
         {this.editor}

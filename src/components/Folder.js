@@ -19,7 +19,7 @@ export default class Folder extends React.Component{
     var foldersView = [];
     if(folder.folders){
       folder.folders.forEach((f, index)=>{
-        var v = <Folder folder = {f} path={this.getPath()} key = {index}/>;
+        var v = <Folder {...f} path={this.getPath()} key = {index}/>;
         foldersView.push(v);
       });
     }
@@ -27,14 +27,14 @@ export default class Folder extends React.Component{
     var fileViews = []
     if(folder.files){
       folder.files.forEach(function(f, index){
-        fileViews.push(<File key={index} file = {f}/>);
+        fileViews.push(<File {...f} key={index}/>);
       })
     }
 
     var folderIcon;
     var folderContent;
 
-    if(this.props.folder.open){
+    if(this.props.open){
       folderIcon = (<FontIcon style={{color:'white', verticalAlign:'bottom'}} className='material-icons'>folder_open</FontIcon>);
       folderContent = <div>
         <div>
@@ -71,7 +71,7 @@ export default class Folder extends React.Component{
   }
 
   getPath(){
-    var path = this.props.path === undefined ? this.props.folder.name : this.props.path + '/' + this.props.folder.name;
+    var path = this.props.path === undefined ? this.props.name : this.props.path + '/' + this.props.name;
     return path;
   }
 
@@ -81,7 +81,7 @@ export default class Folder extends React.Component{
   }
 
   render(){
-    let folderView = this.traverseFolder(this.props.folder);
+    let folderView = this.traverseFolder(this.props);
     return(
       <div>
         {folderView}

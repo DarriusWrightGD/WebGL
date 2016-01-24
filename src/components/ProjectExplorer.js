@@ -26,7 +26,6 @@ class ProjectExplorer extends Component{
   }
 
   render(){
-    const state = this.store.getState();
     return(
         <Tabs>
           <Tab label='Project'>
@@ -36,7 +35,7 @@ class ProjectExplorer extends Component{
               height:445,
               borderRight:'1px solid grey'
              }}>
-              <Folder folder={state.editor.projectExplorer.fileExplorer} />
+              <Folder {...this.props.fileExplorer} />
               <div style={{
                     position:'absolute',
                     color:'white',

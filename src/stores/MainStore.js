@@ -1,13 +1,6 @@
-import EditorReducer from './reducers/EditorReducer';
-var initialState = {
-  editor:{
-    
-  }
-};
+import editor from './reducers/EditorReducer';
+import {combineReducers} from 'redux';
+
 module.exports = {
-  shaderApp : function(state=initialState, action){
-    return {
-      editor: EditorReducer.reduce(state.editor, action)
-    }
-  }
+  shaderApp : combineReducers({editor})
 }

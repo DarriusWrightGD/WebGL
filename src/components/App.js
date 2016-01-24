@@ -9,10 +9,12 @@ class App extends Component{
 
   constructor(props, context){
     super(props,context);
-    var {store} = context;
   }
 
   render(){
+    const {store} = this.context;
+    const state = store.getState();
+
     return (
         <div>
           <Header/>
@@ -26,7 +28,7 @@ class App extends Component{
               <div style={{
                 flexGrow:4
               }}>
-                <Editor />
+                <Editor {...state.editor}/>
               </div>
               <div style={{
                 flexGrow:1
@@ -36,7 +38,7 @@ class App extends Component{
                 </div>
               </div>
             </div>
-            <EditorLog/>
+            <EditorLog errorLog={state.editor.errorLog}/>
           </div>
         </div>
       );

@@ -14,7 +14,7 @@ export default class File extends Component{
     const {store} = this.context;
     return(
       <div className='file' onClick={()=>{
-        store.dispatch({ type : Events.fileSelectedEvent,file: this.props.file})
+        store.dispatch({ type : Events.fileSelectedEvent,file: this.props})
       }}>
         <div
           style={{width:'100%',background:this.hover ? 'grey': 'none'}}
@@ -23,7 +23,7 @@ export default class File extends Component{
           >
           <span>
             <FontIcon className='material-icons' style={{color:'white',verticalAlign:'bottom'}}>insert_drive_file</FontIcon>
-            <span style={{fontFamily:'Roboto, sans-serif'}}>{this.props.file.name}</span>
+            <span style={{fontFamily:'Roboto, sans-serif'}}>{this.props.name}</span>
           </span>
           <div style={{display:this.hover ? 'inline' : 'none'}}>
             <FontIcon className='material-icons'

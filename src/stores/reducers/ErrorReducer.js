@@ -4,17 +4,15 @@ var initialState = {
   messages:[]
 };
 
-module.exports = {
-  reduce: function(state = initialState,action){
-    switch(action.type){
-      case Events.errorEvent:
-        return {
-          ...state,
-          messages: [...state.messages, action.message]
-        };
-      break;
-      default:
-      return state;
-    }
+export default function(state = initialState,action){
+  switch(action.type){
+    case Events.errorEvent:
+      return {
+        ...state,
+        messages: [...state.messages, action.message]
+      };
+    break;
+    default:
+    return state;
   }
 }

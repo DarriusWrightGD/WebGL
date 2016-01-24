@@ -18,13 +18,13 @@ export default class Editor extends React.Component{
           <div style={{
             flexGrow: 1,
           }}>
-          <ProjectExplorer/>
+          <ProjectExplorer {...this.props.projectExplorer}/>
           </div>
           <div style={{
             flexGrow: 4,
             maxHeight:300
           }}>
-          <EditorTabs/>
+          <EditorTabs {...this.props.textEditor}/>
           </div>
       </div>
     );

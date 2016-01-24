@@ -33,8 +33,6 @@ function addTab(state, action){
 }
 
 
-module.exports = {
-  reduce : function(state, action){
-    return addTab(state,action);
-  }
+export default function(state, action){
+  return addTab(state,action);
 }

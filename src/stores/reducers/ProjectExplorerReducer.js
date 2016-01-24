@@ -1,13 +1,8 @@
-import FileExplorerReducer from './FileExplorerReducer';
-import AddFileDialogReducer from './AddFileDialogReducer';
-var initialState = {
+import fileExplorer from './FileExplorerReducer';
+import addFileDialog from './AddFileDialogReducer';
+import {combineReducers} from 'redux';
 
-};
-module.exports = {
-  reduce: function(state = initialState, action){
-    return {
-      fileExplorer: FileExplorerReducer.reduce(state.fileExplorer,action),
-      addFileDialog: AddFileDialogReducer.reduce(state.addFileDialog,action)
-    }
-  }
-}
+export default combineReducers({
+  fileExplorer,
+  addFileDialog
+})

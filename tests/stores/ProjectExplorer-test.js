@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import ProjectExplorerReducer from 'src/stores/reducers/ProjectExplorerReducer';
+import projectExplorer from 'src/stores/reducers/ProjectExplorerReducer';
 
 describe('ProjectExplorerReducer tests', function(){
   var state;
@@ -17,12 +17,12 @@ describe('ProjectExplorerReducer tests', function(){
   });
 
   it('should set up the folder explorer correcly if initialState populates it', ()=>{
-    var reducedState = ProjectExplorerReducer.reduce(state,{});
+    var reducedState = projectExplorer(state,{});
     expect(reducedState.fileExplorer).to.deep.equal(state.fileExplorer);
   });
 
   it('should set up the add dialog correcly if initialState populates it', ()=>{
-    var reducedState = ProjectExplorerReducer.reduce(state,{});
+    var reducedState = projectExplorer(state,{});
     expect(reducedState.addFileDialog).to.deep.equal(state.addFileDialog);
   });
 });

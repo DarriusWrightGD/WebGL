@@ -27,7 +27,6 @@ export default class EditorLog extends React.Component{
     const  {store} = this.context;
     const state = store.getState();
 
-    debugger;
     var errorLog = state.editor.errorLog.messages.map((message, index)=>{
       return (<div key={index}>
         <ErrorIcon style={style.errorIcon}/>
