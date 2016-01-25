@@ -6,6 +6,8 @@ import mui from 'material-ui';
 import Colors from 'material-ui/lib/styles/colors';
 import AddFolderButton from './AddFolderButton';
 import AddFileButton from './AddFileButton';
+import AddFileDialog from './AddFileDialog';
+import pathValidator from 'src/stores/reducers/PathValidator';
 
 var {Card,Tab,Tabs,FlatButton, FontIcon, IconButton} = mui;
 
@@ -44,6 +46,10 @@ class ProjectExplorer extends Component{
                     borderTop: '1px solid grey'
                   }}>
                   <AddFileButton/>
+                  <AddFileDialog
+                    {...this.props.addFileDialog}
+                    validatePath={pathValidator.validatePath.bind(pathValidator,this.props.fileExplorer)}
+                    validateFile={pathValidator.validateFile.bind(pathValidator,this.props.fileExplorer)}/>
                   <AddFolderButton/>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import {expect} from 'chai';
 import addFileDialog from 'src/stores/reducers/AddFileDialogReducer';
 import Events from 'src/components/Events';
+import {createStore} from 'redux';
 
 describe('AddFileDialogReducer test', ()=>{
   var state;
@@ -20,5 +21,19 @@ describe('AddFileDialogReducer test', ()=>{
     var reducedState = addFileDialog(state,{type:Events.closeFileDialogEvent});
     expect(reducedState.open).to.be.false;
   })
+
+  it('should have the proper default state', ()=>{
+    var defaultState = createStore(addFileDialog).getState();
+
+    expect(defaultState.value).to.equal(1);
+    expect(defaultState.extension).to.equal('.js');
+    expect(defaultState.open).to.equal(false);
+    expect(defaultState.fileTypes).to.include({name:'JavaScript', extension:'.js'});
+    expect(defaultState.fileTypes).to.include({name:'GLSL', extension:'.glsl'});
+  });
+
+  it('should update state with error ', ()=>{
+
+  });
 
 });

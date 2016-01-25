@@ -8,4 +8,6 @@ module.exports = {
   folderClickedEvent : 'FOLDER_CLICKED_EVENT',
   openFileDialogEvent : 'OPEN_FILE_DIALOG_EVENT',
   closeFileDialogEvent : 'CLOSE_FILE_DIALOG_EVENT',
+  createFileEvent: 'CREATE_FILE_EVENT',
+  fileTypeChangedEvent: 'FILE_TYPE_CHANGED_EVENT'
 };
