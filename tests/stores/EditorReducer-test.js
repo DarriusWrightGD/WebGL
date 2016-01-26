@@ -1,7 +1,6 @@
 import React from 'react'
 import editor from 'src/stores/reducers/EditorReducer';
 import {expect} from 'chai';
-import EditorTab from 'src/components/EditorTab';
 import Events from 'src/components/Events';
 import Guid from 'util/Guid';
 
@@ -19,8 +18,8 @@ describe('EditorReducer Tests', function(){
         }
       },
       textEditor:{
-        tabs:[<EditorTab/>],
-        defaultTab:<EditorTab/>,
+        tabs:[{name:'default'}],
+        defaultTab:{name:'default'},
         currentTabId:'fooId'
       },
       errorLog:{

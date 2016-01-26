@@ -15,7 +15,6 @@ export default class AddFileButton extends React.Component{
   };
 
   render(){
-
     return (
       <IconButton
         onClick={this.open}

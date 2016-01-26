@@ -44,7 +44,7 @@ describe('PathValidator test', ()=>{
       to.throw(Error, `The content ${existingFileName} already exists`);
   });
 
-  it('should not throw and error if the file does not exist', ()=>{
+  it('should not throw an error if the file does not exist', ()=>{
     expect(pathValidator.validateFile.bind(pathValidator,fileStructure,validPath,nonExisitingFileName)).
       to.not.throw();
   })
@@ -54,9 +54,9 @@ describe('PathValidator test', ()=>{
       to.throw(Error, `The content ${existingFolderName} already exists`);
   });
 
-  it('should not throw and error if the folder does not exist', ()=>{
+  it('should not throw an error if the folder does not exist', ()=>{
     expect(pathValidator.validateFolder.bind(pathValidator,fileStructure,'foo',nonExisitingFolderName)).
       to.not.throw();
-  })
+  });
 
 });

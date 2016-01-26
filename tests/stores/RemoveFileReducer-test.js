@@ -2,7 +2,6 @@ import {expect} from 'chai';
 import React from 'react';
 import removeFile from 'src/stores/reducers/RemoveFileReducer';
 import selectFile from 'src/stores/reducers/SelectFileReducer';
-import EditorTab from 'src/components/EditorTab';
 import Events from 'src/components/Events';
 import Guid from 'util/Guid';
 
@@ -11,9 +10,8 @@ describe('RemoveFileReducer tests', ()=>{
   var state;
   var defaultTabGuid = Guid.generate();
   var defaultFile = { name:'StartCoding', mode:'text', content:'Select/create a file in the project explorer to get started'};
-  var defaultTab = <EditorTab value={defaultTabGuid} file={defaultFile} label={
-    <span>{defaultFile.name}</span>
-  }/>;
+  var defaultTab = {id:defaultTabGuid, file:defaultFile}
+
   before(()=>{
     state = {
         tabs:[defaultTab],
@@ -30,7 +28,7 @@ describe('RemoveFileReducer tests', ()=>{
     );
 
     var tabCount = twoTabsState.tabs.length;
-    var tabId = twoTabsState.tabs[tabCount-1].props.value;
+    var tabId = twoTabsState.tabs[tabCount-1].id;
 
     var removedTabState = removeFile(twoTabsState,{type:Events.removeFileEvent, guid:tabId});
     expect(removedTabState.tabs.length).to.equal(tabCount-1);

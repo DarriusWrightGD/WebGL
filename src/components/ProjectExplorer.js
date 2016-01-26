@@ -1,32 +1,15 @@
 import React from 'react';
 import {Component, PropTypes} from 'react';
-import Folder from './Folder';
+import FileExplorer from './FileExplorer';
 import style from 'style/MainStyle';
 import mui from 'material-ui';
-import Colors from 'material-ui/lib/styles/colors';
 import AddFolderButton from './AddFolderButton';
 import AddFileButton from './AddFileButton';
-import AddFileDialog from './AddFileDialog';
-import pathValidator from 'src/stores/reducers/PathValidator';
+import AddFileDialogContainer from './AddFileDialogContainer';
 
-var {Card,Tab,Tabs,FlatButton, FontIcon, IconButton} = mui;
+var {Tab,Tabs} = mui;
 
-class ProjectExplorer extends Component{
-  constructor(props, context)
-  {
-    super(props,context);
-    this.store = context.store;
-  }
-
-  componentDidMount(){
-    const {store} = this.context;
-    this.unsubscribe = store.subscribe(()=> this.forceUpdate());
-  }
-
-  componentWillUnmount(){
-    this.unsubscribe();
-  }
-
+export default class ProjectExplorer extends Component{
   render(){
     return(
         <Tabs>
@@ -37,7 +20,7 @@ class ProjectExplorer extends Component{
               height:445,
               borderRight:'1px solid grey'
              }}>
-              <Folder {...this.props.fileExplorer} />
+              <FileExplorer/>
               <div style={{
                     position:'absolute',
                     color:'white',
@@ -46,21 +29,13 @@ class ProjectExplorer extends Component{
                     borderTop: '1px solid grey'
                   }}>
                   <AddFileButton/>
-                  <AddFileDialog
-                    {...this.props.addFileDialog}
-                    validatePath={pathValidator.validatePath.bind(pathValidator,this.props.fileExplorer)}
-                    validateFile={pathValidator.validateFile.bind(pathValidator,this.props.fileExplorer)}/>
-                  <AddFolderButton/>
+                  <AddFileDialogContainer/>
               </div>
             </div>
           </Tab>
         </Tabs>
     );
   }
-}
-
-ProjectExplorer.contextTypes = {
-  store: PropTypes.object
 }
 
 export default ProjectExplorer;

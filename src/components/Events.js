@@ -9,5 +9,6 @@ module.exports = {
   openFileDialogEvent : 'OPEN_FILE_DIALOG_EVENT',
   closeFileDialogEvent : 'CLOSE_FILE_DIALOG_EVENT',
   createFileEvent: 'CREATE_FILE_EVENT',
+  createFileErrorEvent: 'CREATE_FILE_ERROR_EVENT',
   fileTypeChangedEvent: 'FILE_TYPE_CHANGED_EVENT'
 };

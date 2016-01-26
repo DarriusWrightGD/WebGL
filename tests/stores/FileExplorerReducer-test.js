@@ -7,7 +7,8 @@ describe('FileExplorerReducer test', ()=>{
   var state;
   before(()=>{
     state = {
-      folders:[{name:'Foo',open:false}],
+      name:'Bar',
+      folders:[{name:'Foo',open:false, files:[]}],
       files:[]
     }
   });
@@ -20,5 +21,14 @@ describe('FileExplorerReducer test', ()=>{
   it('should change state when folder open event fired', ()=>{
     var reducedState = fileExplorer(state,{type:Events.folderClickedEvent, path:state.folders[0].name});
     expect(reducedState).to.not.deep.equal(state);
+  })
+
+  it('should add a file when the createFileEvent is fired', ()=>{
+    var fileCount = state.files.length;
+    var fileName = 'foo.js'
+
+    var reducedState = fileExplorer(state, {type:Events.createFileEvent,extension:'.js' , path:'Bar', fileName:fileName});
+    expect(reducedState.files.length).to.equal(fileCount+1);
+    expect(reducedState.files[fileCount].name).to.equal(fileName);
   })
 });

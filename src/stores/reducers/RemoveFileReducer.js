@@ -5,7 +5,7 @@ import style from 'style/MainStyle';
 export default function(state,action){
   var guid = action.guid;
   var filteredTabs = _.filter(state.tabs,(tab)=>{
-    if(tab.props.value != guid)
+    if(tab.id != guid)
     {
       return tab;
     }
@@ -15,13 +15,13 @@ export default function(state,action){
     return {
       ...state,
       tabs: filteredTabs,
-      currentTab: filteredTabs[0].props.value
+      currentTab: filteredTabs[0].id
     }
   }else{
     return {
       ...state,
       tabs: [state.defaultTab],
-      currentTab: state.defaultTab.props.value
+      currentTab: state.defaultTab.id
     }
   }
 }

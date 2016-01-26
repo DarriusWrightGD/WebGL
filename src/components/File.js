@@ -14,7 +14,7 @@ export default class File extends Component{
     const {store} = this.context;
     return(
       <div className='file' onClick={()=>{
-        store.dispatch({ type : Events.fileSelectedEvent,file: this.props})
+        this.props.onFileClick(this.props)
       }}>
         <div
           style={{width:'100%',background:this.hover ? 'grey': 'none'}}

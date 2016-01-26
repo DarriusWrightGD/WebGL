@@ -1,6 +1,7 @@
 import React from 'react';
 import EditorTabs from './EditorTabs';
 import ProjectExplorer from './ProjectExplorer';
+import TextEditor from './TextEditor';
 
 export default class Editor extends React.Component{
   constructor(props){
@@ -24,7 +25,7 @@ export default class Editor extends React.Component{
             flexGrow: 4,
             maxHeight:300
           }}>
-          <EditorTabs {...this.props.textEditor}/>
+          <TextEditor/>
           </div>
       </div>
     );
