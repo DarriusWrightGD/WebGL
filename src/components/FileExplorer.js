@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch)=>{
       dispatch({type:Events.folderClickedEvent, path:path});
     },
     onFileClick: (file)=>{
+      debugger;
       dispatch({ type : Events.fileSelectedEvent,file: file})
     }
   }

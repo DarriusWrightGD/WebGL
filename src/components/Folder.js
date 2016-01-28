@@ -22,7 +22,7 @@ export default class Folder extends React.Component{
     var fileViews = []
     if(folder.files){
       folder.files.forEach((f, index)=>{
-        fileViews.push(<File {...f} onFileClick={()=>{this.props.onFileClick(f)}} key={index}/>);
+        fileViews.push(<File {...f} path={this.getPath()} onFileClick={()=>{this.props.onFileClick(f)}} key={index}/>);
       })
     }
 

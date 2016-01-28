@@ -5,7 +5,7 @@ import style from 'style/MainStyle';
 import mui from 'material-ui';
 import AddFolderButton from './AddFolderButton';
 import AddFileButton from './AddFileButton';
-import AddFileDialogContainer from './AddFileDialogContainer';
+import AddContentDialogContainer from './AddContentDialogContainer';
 
 var {Tab,Tabs} = mui;
 
@@ -29,7 +29,8 @@ export default class ProjectExplorer extends Component{
                     borderTop: '1px solid grey'
                   }}>
                   <AddFileButton/>
-                  <AddFileDialogContainer/>
+                  <AddFolderButton/>
+                  <AddContentDialogContainer/>
               </div>
             </div>
           </Tab>

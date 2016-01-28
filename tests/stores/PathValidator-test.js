@@ -59,4 +59,10 @@ describe('PathValidator test', ()=>{
       to.not.throw();
   });
 
+  it('should throw an error if the inner folder is not found', ()=>{
+    var badPath = 'foo/badPath';
+    expect(pathValidator.validatePath.bind(pathValidator,fileStructure,badPath)).
+      to.throw(Error, `The path ${badPath} does not exist`);
+  })
+
 });

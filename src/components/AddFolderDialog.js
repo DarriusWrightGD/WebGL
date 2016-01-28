@@ -4,12 +4,12 @@ import Events from './Events';
 
 var {IconButton, FlatButton, Dialog, TextField, MenuItem, SelectField} = mui;
 
-export default ({title, fileTypes,open ,
-  fileExplorer, selectedFileIndex,
-  onClose, onFileSelect, onAddFile,
-  pathMessage, fileMessage
+export default ({title, open,
+  fileExplorer,
+  onClose, onAddFolder,
+  pathMessage, folderMessage
   })=>{
-  let fileName;
+  let folderName;
   let path;
 
   const actions = <div>
@@ -21,13 +21,8 @@ export default ({title, fileTypes,open ,
       label="Submit"
       primary={true}
       onTouchTap={()=>{
-        var extension = fileTypes[selectedFileIndex-1].extension;
-        onAddFile(fileExplorer,path.getValue(),fileName.getValue()+extension,extension)}} />
+        onAddFolder(fileExplorer,path.getValue(),folder.getValue())}} />
   </div>;
-
-  const items = fileTypes.map((fileType,index)=>{
-    return <MenuItem value={index+1} key={index+1} primaryText={fileType.name} label={fileType.extension}/>
-  });
 
   return (
     <Dialog
@@ -41,12 +36,7 @@ export default ({title, fileTypes,open ,
           <TextField errorText={pathMessage} ref={node=> {path = node}} hintText='Enter path'/>
         </div>
         <div>
-          <TextField errorText={fileMessage} ref={node=>{fileName = node}} hintText='Enter file name'/>
-        </div>
-        <div>
-          <SelectField value={selectedFileIndex} onChange={(event,index,value)=>{onFileSelect(value)}} >
-            {items}
-          </SelectField>
+          <TextField errorText={folderMessage} ref={node=>{folderName = node}} hintText='Enter folder name'/>
         </div>
       </div>
     </Dialog>

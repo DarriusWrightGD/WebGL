@@ -1,15 +1,19 @@
-import {expect} from 'chai';
 import addFileDialog from 'src/stores/reducers/AddFileDialogReducer';
+import {expect} from 'chai';
 import Events from 'src/components/Events';
 import {createStore} from 'redux';
 
-describe('AddFileDialogReducer test', ()=>{
+
+describe('AddFileDialogReducer tests', ()=>{
   var state;
+  var errors;
+
   before(()=>{
     state= {
-      open:false,
-      selectedFileIndex:1
-    }
+        open:false,
+        selectedFileIndex:1
+    };
+    errors = {path:'There\'s a foo path error', file:'There\'s a bar file error'};
   })
 
   it('should open file dialog when open file dialog event fired', ()=>{
@@ -17,20 +21,18 @@ describe('AddFileDialogReducer test', ()=>{
     expect(reducedState.open).to.be.true;
   })
 
-  it('should close file dialog when open file dialog event fired', ()=>{
+  it('should close file dialog when close file dialog event fired', ()=>{
     state.open = true;
     var reducedState = addFileDialog(state,{type:Events.closeFileDialogEvent});
     expect(reducedState.open).to.be.false;
   })
 
-  it('should have the proper default state', ()=>{
-    var defaultState = createStore(addFileDialog).getState();
+  it('should clear file error messages when the close event is fired', ()=>{
+    var errorState = addFileDialog(state, {type:Events.createFileErrorEvent, pathMessage: errors.path, fileMessage: errors.file});
+    var clearedState = addFileDialog(errorState, {type:Events.closeFileDialogEvent});
 
-    expect(defaultState.selectedFileIndex).to.equal(1);
-    expect(defaultState.extension).to.equal('.js');
-    expect(defaultState.open).to.equal(false);
-    expect(defaultState.fileTypes).to.include({name:'JavaScript', extension:'.js'});
-    expect(defaultState.fileTypes).to.include({name:'GLSL', extension:'.glsl'});
+    expect(clearedState.pathMessage).to.not.be.ok;
+    expect(clearedState.fileMessage).to.not.be.ok;
   });
 
   it('should update selectedFileIndex when event fired', ()=>{
@@ -39,11 +41,22 @@ describe('AddFileDialogReducer test', ()=>{
   });
 
   it('should update state with errors when createFileErrorEvent fired', ()=>{
-    var errors = {path:'There\'s a foo path error', file:'There\'s a bar file error'};
     var reducedState = addFileDialog(state, {type:Events.createFileErrorEvent, pathMessage: errors.path, fileMessage: errors.file})
 
     expect(reducedState.pathMessage).to.be.ok;
     expect(reducedState.fileMessage).to.be.ok;
   });
+
+  it('should have the correct defaultState', ()=>{
+    var defaultState = createStore(addFileDialog).getState();
+
+    expect(defaultState.selectedFileIndex).to.equal(1);
+    expect(defaultState.fileTypes).to.include({name:'JavaScript', extension:'.js'});
+    expect(defaultState.fileTypes).to.include({name:'GLSL', extension:'.glsl'});
+    expect(defaultState.extension).to.equal('.js');
+    expect(defaultState.open).to.equal(false);
+    expect(defaultState.title).to.equal('Add a file');
+
+  })
 
 });

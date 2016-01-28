@@ -31,4 +31,12 @@ describe('FileExplorerReducer test', ()=>{
     expect(reducedState.files.length).to.equal(fileCount+1);
     expect(reducedState.files[fileCount].name).to.equal(fileName);
   })
+
+  it('should check if the top level directory is valid before adding a file', ()=>{
+    var fileCount = state.files.length;
+    var fileName = 'foo.js'
+
+    var reducedState = fileExplorer(state, {type:Events.createFileEvent,extension:'.js' , path:'FooBarz', fileName:fileName});
+    expect(reducedState.files.length).to.equal(fileCount);
+  })
 });

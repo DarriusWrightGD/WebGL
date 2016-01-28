@@ -1,15 +1,21 @@
 function traverseFolderStructure(folderStructure, path){
   var folderNames = path.split('/');
+  var validPath = true;
 
-  for(let i = 0; i < folderNames.length-1;i++){
+  for(let i = 0; i < folderNames.length-1 && validPath;i++){
     if(folderStructure.name === folderNames[i]){
       folderStructure = _.find(folderStructure.folders, (folder)=>{
         return folder.name === folderNames[i+1];
       })
     }else{
-      throw new Error(`The path ${path} does not exist`);
+      validPath = false;
     }
   }
+  debugger;
+  if(!validPath || !folderStructure){
+    throw new Error(`The path ${path} does not exist`);
+  }
+
   return folderStructure;
 }
 

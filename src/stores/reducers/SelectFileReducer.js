@@ -3,7 +3,7 @@ import Guid from 'util/Guid';
 
 function addTab(state, action){
   var file = action.file;
-  var tab = _.find(state.tabs, function(t){ return t.file.name == file.name});
+  var tab = _.find(state.tabs, function(t){ return t.file.name == file.name && t.file.path == file.path});
   if(!tab)
   {
     var guid = Guid.generate();

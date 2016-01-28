@@ -49,15 +49,22 @@ function create(state, action){
   var newState = cloner.deep.copy(state);
   var folderNames = action.path.split('/');
   var currentFolder = newState;
+  var canAddFile = currentFolder.name == folderNames[0];
 
-  for(let i = 0; i < folderNames.length-1;i++){
+  for(let i = 0; i < folderNames.length-1 && canAddFile;i++){
     if(currentFolder.name === folderNames[i]){
       currentFolder = _.find(currentFolder.folders, (folder)=>{
         return folder.name === folderNames[i+1];
       })
+    }else{
+      canAddFile = false;
     }
   }
-  currentFolder.files.push({name:action.fileName, content:'', mode:determineMode(action.extension)});
+
+  if(canAddFile){
+    currentFolder.files.push({name:action.fileName, content:'', mode:determineMode(action.extension)});
+  }
+
   return newState;
 };
 
@@ -68,7 +75,6 @@ export default function(state = initialState, action){
     break;
     case Events.createFileEvent:
       return create(state,action);
-
     break;
     default:
       return state;

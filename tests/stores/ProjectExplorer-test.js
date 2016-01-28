@@ -10,8 +10,13 @@ describe('ProjectExplorerReducer tests', function(){
         folders:[{name:'fooOlder', open:false}],
         files:[{name:'foo.txt',content:'console.log(foo)', type:'text'}]
       },
-      addFileDialog:{
-        open:false
+      addContentDialog:{
+        fileDialog: {
+          open:false
+        },
+        folderDialog:{
+          open:false
+        }
       }
     }
   });
@@ -23,6 +28,6 @@ describe('ProjectExplorerReducer tests', function(){
 
   it('should set up the add dialog correcly if initialState populates it', ()=>{
     var reducedState = projectExplorer(state,{});
-    expect(reducedState.addFileDialog).to.deep.equal(state.addFileDialog);
+    expect(reducedState.addContentDialog).to.deep.equal(state.addContentDialog);
   });
 });

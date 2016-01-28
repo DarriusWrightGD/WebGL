@@ -11,7 +11,6 @@ export default class File extends Component{
   }
 
   render(){
-    const {store} = this.context;
     return(
       <div className='file' onClick={()=>{
         this.props.onFileClick(this.props)
@@ -35,8 +34,4 @@ export default class File extends Component{
       </div>
     );
   }
-}
-
-File.contextTypes = {
-  store: PropTypes.object
 }

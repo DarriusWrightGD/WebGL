@@ -27,7 +27,7 @@ export default class EditorTabs extends Component{
       fontSize: 14,
     };
   }
-  
+
   createAceEditor(name, content, mode){
     return <AceEditor
       name={name}

@@ -1,8 +1,8 @@
 import fileExplorer from './FileExplorerReducer';
-import addFileDialog from './AddFileDialogReducer';
+import addContentDialog from './AddContentDialogReducer';
 import {combineReducers} from 'redux';
 
 export default combineReducers({
   fileExplorer,
-  addFileDialog
+  addContentDialog
 })

@@ -13,8 +13,13 @@ describe('EditorReducer Tests', function(){
           folders:[],
           files:[]
         },
-        addFileDialog:{
-          open:false
+        addContentDialog:{
+          fileDialog: {
+            open:false
+          },
+          folderDialog:{
+            open:false
+          }
         }
       },
       textEditor:{
