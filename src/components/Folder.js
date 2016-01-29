@@ -65,7 +65,7 @@ export default class Folder extends React.Component{
   };
 
   getPath= ()=>{
-    var path = this.props.path === undefined ? this.props.name : this.props.path + '/' + this.props.name;
+    var path = this.props.path === '' ? this.props.name : this.props.path + '/' + this.props.name;
     return path;
   };
 

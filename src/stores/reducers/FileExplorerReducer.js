@@ -6,41 +6,7 @@ var initialState = {
   name:'ShaderApp',
   path:'',
   open:true,
-  folders:[{
-    path:'ShaderApp',
-    open: true,
-    name:'Assets',
-    folders:[{
-      path:'ShaderApp/Assets',
-      open:true,
-      name:'Shaders',
-      files:[{
-        path:'ShaderApp/Assets/Shaders',
-        name:'vertex.glsl',
-        mode:'glsl',
-        content:'void main(){}'
-      },
-      {
-        path:'ShaderApp/Assets/Shaders',
-        name:'fragment.glsl',
-        mode:'glsl',
-        content:'void main(){}'
-      }]
-    }],
-    files:[{
-      path:'ShaderApp/Assets',
-      name:'render.js',
-      mode:'javascript',
-      content:'function(){console.log(\'something\')}'
-    },
-    {
-      path:'ShaderApp/Assets',
-      name:'update.js',
-      mode:'javascript',
-      content:'function(){console.log(\'something\')}'
-    }
-  ]
-  }],
+  folders:[],
   files:[]
 };
 
