@@ -1,7 +1,6 @@
 import errorLog from 'src/stores/reducers/ErrorReducer';
 import Events from 'src/components/Events';
 import {expect} from 'chai';
-import cloner from 'cloner';
 
 describe('ErrorReducer tests', ()=>{
   var state;

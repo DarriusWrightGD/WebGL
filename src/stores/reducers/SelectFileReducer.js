@@ -12,7 +12,7 @@ function addTab(state, action){
       if(state.defaultTab.id !== t.id ){
         return t;
       }
-    })
+    });
     return {
       ...state,
       tabs:[...newTabs, {file:file, id:guid}],

@@ -23,7 +23,7 @@ describe('EditorReducer Tests', function(){
         }
       },
       textEditor:{
-        tabs:[{name:'default'}],
+        tabs:[{name:'default' }],
         defaultTab:{name:'default'},
         currentTabId:'fooId'
       },

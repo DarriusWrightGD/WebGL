@@ -1,4 +1,3 @@
-import cloner from 'cloner';
 import Events from 'src/components/Events';
 var initialState = {
   messages:[]

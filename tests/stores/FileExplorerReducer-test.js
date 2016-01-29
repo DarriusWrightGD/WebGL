@@ -9,8 +9,17 @@ describe('FileExplorerReducer test', ()=>{
     state = {
       name:'Bar',
       folders:[{name:'Foo',open:false, files:[]}],
-      files:[]
+      files:[{name:'foo.js',content:'There is file content', path:'Bar'}]
     }
+  });
+
+  it('should update file content when update content fired', ()=>{
+    var newContent = 'Some new content';
+    var file = {path:'Bar', content:newContent}
+    var reducedState = fileExplorer(state,{type:Events.updateFileContentEvent, content: newContent,
+      path:'Bar', name:'foo.js' });
+    expect(reducedState).to.not.deep.equal(state);
+    expect(reducedState.files[0].content).to.equal(newContent);
   });
 
   it('should return state back for unknown action', ()=>{
@@ -19,7 +28,7 @@ describe('FileExplorerReducer test', ()=>{
   });
 
   it('should change state when folder open event fired', ()=>{
-    var reducedState = fileExplorer(state,{type:Events.folderClickedEvent, path:state.folders[0].name});
+    var reducedState = fileExplorer(state,{type:Events.folderClickedEvent, path: 'Bar/Foo'});
     expect(reducedState).to.not.deep.equal(state);
   })
 

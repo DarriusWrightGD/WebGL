@@ -7,7 +7,7 @@ import style from 'style/MainStyle';
 import RemoveTabButton from './RemoveTabButton';
 
 var AceEditor;
-if(typeof window != 'undefined'){
+if(typeof window !== undefined){
   AceEditor = require('react-ace');
   require('brace/mode/glsl');
   require('brace/mode/javascript');
@@ -28,17 +28,27 @@ export default class EditorTabs extends Component{
     };
   }
 
-  createAceEditor(name, content, mode){
+  createAceEditor = (file)=>{
     return <AceEditor
-      name={name}
-      mode={mode}
+      name={file.name}
+      mode={file.mode}
       height={this.sharedProps.height}
       width={this.sharedProps.width}
       theme={this.sharedProps.theme}
       fontSize={this.sharedProps.fontSize}
       onLoad={this.onEditorLoad}
+      onChange={(content)=>{
+          if(file.content !== content){
+            this.props.onFileChange(content,file.path,file.name)
+          }
+        }
+      }
       editorProps={{$blockScrolling: true}}
-      value={content}/>
+      value={file.content}/>
+  };
+
+  onEditorLoad(editor){
+    editor.getSession().setUseWrapMode(true);
   }
 
   render(){
@@ -53,9 +63,9 @@ export default class EditorTabs extends Component{
               <RemoveTabButton onClick = {(event)=>{event.stopPropagation(); this.props.onRemoveClick(t.id)}}/>
             </span>
           }
-          onClick={()=>this.props.onSelectClick(t.file)}
+          onClick={()=>{this.props.onSelectClick(t.file)}}
           >
-          {this.createAceEditor(t.file.name,t.file.content,t.file.mode)}
+          {this.createAceEditor(t.file)}
         </Tab>
       );
     });

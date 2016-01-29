@@ -20,12 +20,31 @@ describe('TextEditorReducer test', ()=>{
   });
 
   it('should change state if select tab event is fired', ()=>{
-    var newState = textEditor(state, {type:Events.fileSelectedEvent, file:{name:'foo', content:'bar', mode:'text'}});
+    var selectedFile = {name:'foo', content:'bar', mode:'text'}
+    var newState = textEditor(state, {type:Events.fileSelectedEvent, file:selectedFile});
     expect(newState).to.not.deep.equal(state);
+    expect(_.find(newState.tabs, function(t){
+      if(t.file.name === selectedFile.name){
+        return t.file;
+      }
+    })).to.be.ok;
   });
 
   it('should not change state if remove tab event is fired, because of defaultTab', ()=>{
     var removedTabState = textEditor(state,{type:Events.removeFileEvent, guid:state.defaultTab.id});
     expect(removedTabState).to.deep.equal(state);
   });
+
+  it('should update file content when file update is fired for a tab that contains the file', ()=>{
+    var newContent = 'Change Content';
+    var selectedFile = {content:'this is the content', name:'foo'}
+    var selectedState = textEditor(state, {type:Events.fileSelectedEvent, file:selectedFile});
+    var reducedState = textEditor(selectedState, {type:Events.updateFileContentEvent, content:newContent, name:'foo' });
+    var file = _.find(reducedState.tabs, function(t){
+      if(t.file.name === selectedFile.name){
+        return t;
+      }
+    }).file;
+    expect(file.content).to.equal(newContent);
+  })
 });

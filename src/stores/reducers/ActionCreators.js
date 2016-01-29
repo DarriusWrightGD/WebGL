@@ -17,6 +17,26 @@ module.exports = {
       selectedFileIndex
     }
   },
+  selectFile: (file)=>{
+    return {
+      type:Events.fileSelectedEvent,
+      file
+    }
+  },
+  removeFile: (guid)=>{
+    return {
+      type:Events.removeFileEvent,
+      guid
+    }
+  },
+  updateFileContent: (content,path,name)=>{
+    return {
+      type: Events.updateFileContentEvent,
+      content,
+      path,
+      name
+    }
+  },
   closeFileDialog: ()=>{
     return {
       type:Events.closeFileDialogEvent

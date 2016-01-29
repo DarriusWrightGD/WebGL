@@ -1,20 +1,8 @@
-import cloner from 'cloner';
+import pathValidator from './PathValidator';
 
 export default function(state, action){
-  var newState = cloner.deep.copy(state);
-  var folderNames = action.path.split('/');
-  var currentFolder = newState;
-
-  for(let i = 0; i < folderNames.length-1;i++){
-    if(currentFolder.name === folderNames[i]){
-      currentFolder = _.find(currentFolder.folders, (folder)=>{
-        return folder.name === folderNames[i+1];
-      })
-    }else{
-      throw new Error(folderNames[i] + ', directory does not exist');
-    }
-  }
-
+  var newState = _.cloneDeep(state);
+  var currentFolder = pathValidator.getFolderAtPath(newState,action.path);
   currentFolder.open = !currentFolder.open;
   return newState;
 }

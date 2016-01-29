@@ -14,5 +14,6 @@ module.exports = {
   createFileErrorEvent: 'CREATE_FILE_ERROR_EVENT',
   createFolderEvent: 'CREATE_FOLDER_EVENT',
   createFolderErrorEvent: 'CREATE_FOLDER_ERROR_EVENT',
-  fileTypeChangedEvent: 'FILE_TYPE_CHANGED_EVENT'
+  fileTypeChangedEvent: 'FILE_TYPE_CHANGED_EVENT',
+  updateFileContentEvent: 'UPDATE_FILE_CONTENT_EVENT'
 };

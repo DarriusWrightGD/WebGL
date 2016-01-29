@@ -30,9 +30,4 @@ describe('FolderClickedReducer test', ()=>{
     var openState = folderClicked(state, {type:Events.folderClickedEvent, path:state.name + '/' + state.folders[0].name});
     expect(openState.folders[0].open).to.be.true;
   });
-
-  it('should throw an error if the folder does not exist', ()=>{
-    expect(folderClicked.bind(folderClicked,state,{type:Events.folderClickedEvent, path:'foo/bar/path'})).
-      to.throw(Error, /foo, directory does not exist/);
-  })
 });

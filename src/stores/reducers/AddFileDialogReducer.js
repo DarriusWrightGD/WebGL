@@ -9,7 +9,6 @@ var initialState = {
 }
 
 export default (state = initialState, action)=>{
-  debugger;
   switch(action.type){
     case Events.openFileDialogEvent:
       return {

@@ -22,6 +22,17 @@ export default function(state = initialState, action){
     case Events.removeFileEvent:
       return removeFile(state,action);
       break;
+    case Events.updateFileContentEvent:
+      var newState = _.cloneDeep(state);
+      var file = _.find(newState.tabs, (tab)=>{
+        if(tab.file.name === action.name){
+          return tab;
+        }
+      }).file;
+
+      file.content = action.content;
+      return newState;
+      break;
     default:
       return state;
   }
