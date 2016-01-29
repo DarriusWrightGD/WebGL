@@ -33,7 +33,7 @@ function validateFolderContentDoesNotExist(items, name){
 
 function checkContentName(contentName){
   if(!contentName){
-    throw new Error('The content\'s name is not valid');
+    throw new Error(`The content\'s name (${contentName}) is not valid`);
   }
 }
 

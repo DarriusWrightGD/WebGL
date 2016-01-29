@@ -72,22 +72,22 @@ describe('PathValidator test', ()=>{
 
   it('should throw an exception if the file name is not ok', ()=>{
     expect(pathValidator.validateFile.bind(pathValidator,fileStructure,validPath, undefined)).
-      to.throw(Error, 'The content\'s name is not valid')
+      to.throw(Error, 'The content\'s name (undefined) is not valid')
   });
 
   it('should throw an exception if the file name is empty', ()=>{
     expect(pathValidator.validateFile.bind(pathValidator,fileStructure,validPath, '')).
-      to.throw(Error, 'The content\'s name is not valid')
+      to.throw(Error, 'The content\'s name () is not valid')
   })
 
   it('should throw an exception if the file name is not ok', ()=>{
     expect(pathValidator.validateFolder.bind(pathValidator,fileStructure,validPath, undefined)).
-      to.throw(Error, 'The content\'s name is not valid')
+      to.throw(Error, 'The content\'s name (undefined) is not valid')
   });
 
   it('should throw an exception if the file name is empty', ()=>{
     expect(pathValidator.validateFolder.bind(pathValidator,fileStructure,validPath, '')).
-      to.throw(Error, 'The content\'s name is not valid')
+      to.throw(Error, 'The content\'s name () is not valid')
   })
 
 });

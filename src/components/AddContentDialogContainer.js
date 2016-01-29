@@ -4,10 +4,10 @@ import AddContentDialog from './AddContentDialog';
 import actions from 'src/stores/reducers/ActionCreators';
 import pathValidator from 'src/stores/reducers/PathValidator';
 
-const addContentValidate = (fileExplorer, path, contentName,validator)=>{
+const addContentValidate = (fileExplorer, path, contentName, contentValidator)=>{
   let pathMessage;
   try {
-    validator(fileExplorer, path);
+    pathValidator.validatePath(fileExplorer, path);
   } catch (e) {
     pathMessage = e.message;
   }
@@ -15,7 +15,7 @@ const addContentValidate = (fileExplorer, path, contentName,validator)=>{
   let contentMessage;
   if(!pathMessage){
     try {
-      validator(fileExplorer, path, contentName);
+      contentValidator(fileExplorer, path, contentName);
     } catch (e) {
       contentMessage = e.message;
     }

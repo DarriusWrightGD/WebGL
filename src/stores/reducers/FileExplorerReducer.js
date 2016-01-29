@@ -21,7 +21,7 @@ function determineMode(extension){
 function createFile(state, action){
   var newState = _.cloneDeep(state);
   let currentFolder = pathValidator.getFolderAtPath(newState, action.path);
-  currentFolder.files.push({name:action.fileName, content:'', mode:determineMode(action.extension)});
+  currentFolder.files.push({name:action.fileName, path:action.path, content:'', mode:determineMode(action.extension)});
 
   return newState;
 };
@@ -29,7 +29,7 @@ function createFile(state, action){
 function createFolder(state, action){
   var newState = _.cloneDeep(state);
   let currentFolder = pathValidator.getFolderAtPath(newState, action.path);
-  currentFolder.folders.push({name:action.folderName, files:[], folders:[]});
+  currentFolder.folders.push({name:action.folderName,path:action.path, files:[], folders:[]});
 
   return newState;
 }
