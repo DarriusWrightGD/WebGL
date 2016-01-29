@@ -36,7 +36,18 @@ describe('FileExplorerReducer test', ()=>{
     var fileCount = state.files.length;
     var fileName = 'foo.js'
 
-    var reducedState = fileExplorer(state, {type:Events.createFileEvent,extension:'.js' , path:'FooBarz', fileName:fileName});
-    expect(reducedState.files.length).to.equal(fileCount);
+    expect(fileExplorer.bind(fileExplorer,state, {type:Events.createFileEvent,extension:'.js' , path:'FooBarz', fileName:fileName})).
+      to.throw('The path FooBarz does not exist');
   })
+
+  it('should add a folder when the createFolderEvent is fired', ()=>{
+    var folderCount = state.folders.length;
+    var folderName = 'NewFoo';
+
+    var reducedState = fileExplorer(state,{type:Events.createFolderEvent,path: 'Bar',folderName: folderName});
+    expect(reducedState.folders.length).to.equal(folderCount+1);
+    expect(_.find(reducedState.folders, (folder)=>{
+      return folder.name === folderName;
+    })).to.be.ok;
+  });
 });

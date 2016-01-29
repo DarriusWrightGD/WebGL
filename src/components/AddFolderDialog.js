@@ -21,7 +21,7 @@ export default ({title, open,
       label="Submit"
       primary={true}
       onTouchTap={()=>{
-        onAddFolder(fileExplorer,path.getValue(),folder.getValue())}} />
+        onAddFolder(fileExplorer,path.getValue(),folderName.getValue())}} />
   </div>;
 
   return (

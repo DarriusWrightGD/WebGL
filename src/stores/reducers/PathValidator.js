@@ -1,6 +1,6 @@
 function traverseFolderStructure(folderStructure, path){
   var folderNames = path.split('/');
-  var validPath = true;
+  var validPath = folderStructure.name == folderNames[0];
 
   for(let i = 0; i < folderNames.length-1 && validPath;i++){
     if(folderStructure.name === folderNames[i]){
@@ -11,7 +11,7 @@ function traverseFolderStructure(folderStructure, path){
       validPath = false;
     }
   }
-  debugger;
+
   if(!validPath || !folderStructure){
     throw new Error(`The path ${path} does not exist`);
   }
@@ -31,16 +31,25 @@ function validateFolderContentDoesNotExist(items, name){
   }
 }
 
+function checkContentName(contentName){
+  if(!contentName){
+    throw new Error('The content\'s name is not valid');
+  }
+}
+
 module.exports = {
   validatePath: (folderStructure, path)=>{
     traverseFolderStructure(folderStructure,path);
   },
   validateFile: (folderStructure,path,fileName)=>{
+    checkContentName(fileName);
     var currentFolder = traverseFolderStructure(folderStructure,path);
     validateFolderContentDoesNotExist(currentFolder.files,fileName);
   },
   validateFolder: (folderStructure,path,folderName)=>{
+    checkContentName(folderName);
     var currentFolder = traverseFolderStructure(folderStructure,path);
     validateFolderContentDoesNotExist(currentFolder.folders,folderName);
-  }
+  },
+  getFolderAtPath: traverseFolderStructure
 }

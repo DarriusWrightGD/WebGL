@@ -3,9 +3,8 @@ import {Component, PropTypes} from 'react';
 import FileExplorer from './FileExplorer';
 import style from 'style/MainStyle';
 import mui from 'material-ui';
-import AddFolderButton from './AddFolderButton';
-import AddFileButton from './AddFileButton';
 import AddContentDialogContainer from './AddContentDialogContainer';
+import AddContentButtonsContainer from './AddContentButtonsContainer';
 
 var {Tab,Tabs} = mui;
 
@@ -28,8 +27,7 @@ export default class ProjectExplorer extends Component{
                     left:'25%',
                     borderTop: '1px solid grey'
                   }}>
-                  <AddFileButton/>
-                  <AddFolderButton/>
+                  <AddContentButtonsContainer/>
                   <AddContentDialogContainer/>
               </div>
             </div>

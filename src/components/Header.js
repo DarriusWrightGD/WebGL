@@ -3,10 +3,6 @@ import mui from 'material-ui';
 
 var AppBar = mui.AppBar;
 
-export default class Header extends React.Component{
-  render(){
-    return(
-      <AppBar title='Wright Shaders' iconElementLeft={<div></div>}/>
-    );
-  }
+export default ()=>{
+  return (<AppBar title='Wright Shaders' iconElementLeft={<div></div>}/>);
 }

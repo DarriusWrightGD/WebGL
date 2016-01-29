@@ -4,23 +4,26 @@ import AddContentDialog from './AddContentDialog';
 import actions from 'src/stores/reducers/ActionCreators';
 import pathValidator from 'src/stores/reducers/PathValidator';
 
-const addContent = (fileExplorer, path, contentName,validator)=>{
+const addContentValidate = (fileExplorer, path, contentName,validator)=>{
   let pathMessage;
   try {
-    pathValidator.validatePath(fileExplorer, path);
+    validator(fileExplorer, path);
   } catch (e) {
-    contentMessage = e.message;
+    pathMessage = e.message;
   }
 
   let contentMessage;
-  try {
-    validator(fileExplorer, path, contentName);
-  } catch (e) {
-    contentMessage = e.message;
+  if(!pathMessage){
+    try {
+      validator(fileExplorer, path, contentName);
+    } catch (e) {
+      contentMessage = e.message;
+    }
   }
 
   return {contentMessage,pathMessage};
 }
+
 
 
 const mapStateToProps = (state)=>{
@@ -30,7 +33,7 @@ const mapStateToProps = (state)=>{
   }
 };
 
-const mapDispatchToProps = (dipatch)=>{
+const mapDispatchToProps = (dispatch)=>{
   return {
     onCloseFileDialog: ()=>{
       dispatch(actions.closeFileDialog());

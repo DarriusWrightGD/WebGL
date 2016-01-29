@@ -6,11 +6,6 @@ import MainLoop from 'mainloop.js';
 export default class WebGLCanvas extends React.Component{
   constructor(props){
     super(props);
-    this.initGL = this.initGL.bind(this);
-    this.paint = this.paint.bind(this);
-    this.compileShader = this.compileShader.bind(this);
-    this.compileShaders = this.compileShaders.bind(this);
-    this.compileProgram = this.compileProgram.bind(this);
   }
 
   componentWillMount(){
@@ -36,8 +31,7 @@ export default class WebGLCanvas extends React.Component{
     return false;
   }
 
-  initGL()
-  {
+  initGL= ()=>{
     var canvas = ReactDOM.findDOMNode(this);
     this.gl = null;
     try{
@@ -52,9 +46,9 @@ export default class WebGLCanvas extends React.Component{
     }
 
     this.props.init(this.gl);
-  }
+  };
 
-  compileShader(shaderSource,shaderType){
+  compileShader= (shaderSource,shaderType)=>{
     var shader = this.gl.createShader(shaderType);
     this.gl.shaderSource(shader,shaderSource);
     this.gl.compileShader(shader);
@@ -67,16 +61,16 @@ export default class WebGLCanvas extends React.Component{
     }
 
     return shader;
-  }
+  };
 
-  compileShaders(){
+  compileShaders= ()=>{
     return {
       vertexShader: this.compileShader(this.vertexShader,this.gl.VERTEX_SHADER),
       fragmentShader: this.compileShader(this.fragmentShader,this.gl.FRAGMENT_SHADER)
     };
-  }
+  };
 
-  compileProgram(){
+  compileProgram= ()=>{
     try{
       var shaders = this.compileShaders();
       this.program = this.gl.createProgram();
@@ -94,16 +88,16 @@ export default class WebGLCanvas extends React.Component{
     }catch(e){
 
     }
-  }
+  };
 
   componentDidUpdate(){
     this.props.update();
     this.paint();
   }
 
-  paint(){
+  paint= ()=>{
     this.props.draw(this.gl);
-  }
+  };
 
   vertexShaderChanged(text){
     this.vertexShader = text;

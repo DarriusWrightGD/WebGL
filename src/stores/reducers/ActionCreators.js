@@ -1,6 +1,16 @@
 import Events from 'src/components/Events';
 
 module.exports = {
+  openFileDialog:()=>{
+    return {
+      type:Events.openFileDialogEvent
+    }
+  },
+  openFolderDialog:()=>{
+    return {
+      type: Events.openFolderDialogEvent
+    }
+  },
   fileTypeChanged: (selectedFileIndex)=>{
     return {
       type:Events.fileTypeChanged,

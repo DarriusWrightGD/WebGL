@@ -1,6 +1,7 @@
 import Events from 'src/components/Events';
 import folderClicked from './FolderClickedReducer';
 import cloner from 'cloner';
+import pathValidator from './PathValidator';
 
 var initialState = {
   name:'ShaderApp',
@@ -45,28 +46,21 @@ function determineMode(extension){
   }
 }
 
-function create(state, action){
+function createFile(state, action){
   var newState = cloner.deep.copy(state);
-  var folderNames = action.path.split('/');
-  var currentFolder = newState;
-  var canAddFile = currentFolder.name == folderNames[0];
-
-  for(let i = 0; i < folderNames.length-1 && canAddFile;i++){
-    if(currentFolder.name === folderNames[i]){
-      currentFolder = _.find(currentFolder.folders, (folder)=>{
-        return folder.name === folderNames[i+1];
-      })
-    }else{
-      canAddFile = false;
-    }
-  }
-
-  if(canAddFile){
-    currentFolder.files.push({name:action.fileName, content:'', mode:determineMode(action.extension)});
-  }
+  let currentFolder = pathValidator.getFolderAtPath(newState, action.path);
+  currentFolder.files.push({name:action.fileName, content:'', mode:determineMode(action.extension)});
 
   return newState;
 };
+
+function createFolder(state, action){
+  var newState = cloner.deep.copy(state);
+  let currentFolder = pathValidator.getFolderAtPath(newState, action.path);
+  currentFolder.folders.push({name:action.folderName, files:[], folders:[]});
+
+  return newState;
+}
 
 export default function(state = initialState, action){
   switch(action.type){
@@ -74,7 +68,10 @@ export default function(state = initialState, action){
       return folderClicked(state,action);
     break;
     case Events.createFileEvent:
-      return create(state,action);
+      return createFile(state,action);
+    break;
+    case Events.createFolderEvent:
+      return createFolder(state,action);
     break;
     default:
       return state;
