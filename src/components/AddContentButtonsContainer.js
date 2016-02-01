@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch)=>{
     },
     onFolderDialogClick:()=>{
       dispatch(actions.openFolderDialog());
+    },
+    onProgramDialogClick:()=>{
+      dispatch(actions.openProgramDialog());
     }
   }
 }

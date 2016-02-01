@@ -5,7 +5,7 @@ import selectFile from 'src/stores/reducers/SelectFileReducer';
 import Events from 'src/components/Events';
 import Guid from 'util/Guid';
 
-describe('RemoveFileReducer tests', ()=>{
+describe('RemoveFileReducer', ()=>{
 
   var state;
   var defaultTabGuid = Guid.generate();

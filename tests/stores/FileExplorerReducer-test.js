@@ -3,14 +3,19 @@ import fileExplorer from 'src/stores/reducers/FileExplorerReducer';
 import Events from 'src/components/Events';
 
 
-describe('FileExplorerReducer test', ()=>{
+describe('FileExplorerReducer', ()=>{
   var state;
   before(()=>{
     state = {
       name:'Bar',
       path:'',
-      folders:[{name:'Foo', path:'Bar',open:false, files:[]}],
-      files:[{name:'foo.js',content:'There is file content', path:'Bar'}]
+      folders:[{name:'Foo', path:'Bar',open:false, files:[], programs:[]}],
+      files:[
+        {name:'foo.js',content:'There is file content', path:'Bar'},
+        {name:'vs.glsl', content: '', path:'Bar'},
+        {name:'fs.glsl', content: '', path:'Bar'}
+      ],
+      programs: []
     }
   });
 
@@ -61,7 +66,7 @@ describe('FileExplorerReducer test', ()=>{
 
     var reducedState = fileExplorer(state, {type:Events.createFileEvent,extension:'.js' , path:'Bar/Foo', fileName:fileName});
     var createdFile = reducedState.folders[0].files[fileCount];
-    expect(reducedState.files.length).to.equal(fileCount+1);
+    expect(reducedState.folders[0].files.length).to.equal(fileCount+1);
     expect(createdFile.name).to.equal(fileName);
     expect(createdFile.path).to.equal('Bar/Foo');
   });
@@ -80,8 +85,28 @@ describe('FileExplorerReducer test', ()=>{
 
     var reducedState = fileExplorer(state,{type:Events.createFolderEvent,path: 'Bar',folderName: folderName});
     expect(reducedState.folders.length).to.equal(folderCount+1);
-    expect(_.find(reducedState.folders, (folder)=>{
-      return folder.name === folderName;
-    })).to.be.ok;
+    expect(_.find(reducedState.folders, (folder)=>folder.name === folderName)).to.be.ok;
+  });
+
+  it('should create a program when the createProgramEvent is fired', ()=>{
+    var programCount = state.programs.length;
+    var program = {path:'Bar', name: 'Program.pg', vertexShaderLocation:'Bar/vs.glsl', fragmentShaderLocation:'Bar/fs.glsl'};
+    var newState = {
+      ...state,
+      programs: [...state.programs, program]
+    };
+
+    var reducedState = fileExplorer(state, {type:Events.createProgramEvent, program });
+    expect(reducedState).to.deep.equal(newState);
+  });
+
+  it('should create a program in the correct file path', ()=>{
+    var programCount = state.programs.length;
+    var program = {path:'Bar/Foo', name: 'Program.pg', vertexShaderLocation:'Bar/vs.glsl', fragmentShaderLocation:'Bar/fs.glsl'};
+
+    var reducedState = fileExplorer(state, {type:Events.createProgramEvent, program });
+    var statePrograms = reducedState.folders[0].programs;
+    expect(statePrograms[0]).to.be.ok;
+    expect(statePrograms.length).to.equal(1);
   });
 });

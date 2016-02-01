@@ -6,7 +6,7 @@ import Events from 'src/components/Events';
 import Guid from 'util/Guid';
 
 
-describe('SelectFileReducer tests', ()=>{
+describe('SelectFileReducer', ()=>{
   var state;
   var defaultTabGuid = Guid.generate();
   var defaultFile = { name:'StartCoding', mode:'text', content:'Select/create a file in the project explorer to get started'};

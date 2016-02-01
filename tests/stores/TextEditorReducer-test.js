@@ -5,7 +5,7 @@ import File from 'src/components/File';
 import Events from 'src/components/Events';
 import Guid from 'util/Guid';
 
-describe('TextEditorReducer test', ()=>{
+describe('TextEditorReducer', ()=>{
   var state;
   var defaultTabGuid = Guid.generate();
   var defaultFile = { name:'StartCoding', mode:'text', content:'Select/create a file in the project explorer to get started'};
@@ -23,11 +23,7 @@ describe('TextEditorReducer test', ()=>{
     var selectedFile = {name:'foo', content:'bar', mode:'text'}
     var newState = textEditor(state, {type:Events.fileSelectedEvent, file:selectedFile});
     expect(newState).to.not.deep.equal(state);
-    expect(_.find(newState.tabs, function(t){
-      if(t.file.name === selectedFile.name){
-        return t.file;
-      }
-    })).to.be.ok;
+    expect(_.find(newState.tabs, (t)=>t.file.name === selectedFile.name).file).to.be.ok;
   });
 
   it('should not change state if remove tab event is fired, because of defaultTab', ()=>{
@@ -40,11 +36,7 @@ describe('TextEditorReducer test', ()=>{
     var selectedFile = {content:'this is the content', name:'foo'}
     var selectedState = textEditor(state, {type:Events.fileSelectedEvent, file:selectedFile});
     var reducedState = textEditor(selectedState, {type:Events.updateFileContentEvent, content:newContent, name:'foo' });
-    var file = _.find(reducedState.tabs, function(t){
-      if(t.file.name === selectedFile.name){
-        return t;
-      }
-    }).file;
+    var file = _.find(reducedState.tabs, (t)=>t.file.name === selectedFile.name).file;
     expect(file.content).to.equal(newContent);
   })
 });

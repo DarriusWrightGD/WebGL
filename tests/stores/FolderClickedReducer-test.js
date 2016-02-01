@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import folderClicked from 'src/stores/reducers/FolderClickedReducer';
 import Events from 'src/components/Events';
 
-describe('FolderClickedReducer test', ()=>{
+describe('FolderClickedReducer', ()=>{
   var state;
 
   before(()=>{

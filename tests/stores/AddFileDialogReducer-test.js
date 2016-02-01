@@ -4,7 +4,7 @@ import Events from 'src/components/Events';
 import {createStore} from 'redux';
 
 
-describe('AddFileDialogReducer tests', ()=>{
+describe('AddFileDialogReducer', ()=>{
   var state;
   var errors;
 

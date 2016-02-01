@@ -1,6 +1,8 @@
 import React from 'react';
 import mui from 'material-ui';
 import Events from './Events';
+import DialogActions from './DialogActions';
+import style from 'style/MainStyle';
 
 var {IconButton, FlatButton, Dialog, TextField, MenuItem, SelectField} = mui;
 
@@ -12,18 +14,11 @@ export default ({title, fileTypes,open ,
   let fileName;
   let path;
 
-  const actions = <div>
-    <FlatButton
-      label="Cancel"
-      secondary={true}
-      onTouchTap={()=>{onClose()}} />
-    <FlatButton
-      label="Submit"
-      primary={true}
-      onTouchTap={()=>{
-        var extension = fileTypes[selectedFileIndex-1].extension;
-        onAddFile(fileExplorer,path.getValue(),fileName.getValue()+extension,extension)}} />
-  </div>;
+  const actions = <DialogActions
+    onClose={onClose}
+    onSubmit={()=>{
+      var extension = fileTypes[selectedFileIndex-1].extension;
+      onAddFile(fileExplorer,path.getValue(),fileName.getValue()+extension,extension)}}/>
 
   const items = fileTypes.map((fileType,index)=>{
     return <MenuItem value={index+1} key={index+1} primaryText={fileType.name} label={fileType.extension}/>
@@ -36,7 +31,7 @@ export default ({title, fileTypes,open ,
       modal={false}
       open={open}
       onRequestClose={()=>{onClose()}}>
-      <div style={{paddingLeft:'30%', width:'100%'}}>
+      <div style={style.dialogForm}>
         <div>
           <TextField errorText={pathMessage} ref={node=> {path = node}} hintText='Enter path'/>
         </div>

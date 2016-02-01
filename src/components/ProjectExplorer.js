@@ -13,20 +13,9 @@ export default class ProjectExplorer extends Component{
     return(
         <Tabs>
           <Tab label='Project'>
-            <div style={{
-              color:'white',
-              background:'#141414',
-              height:445,
-              borderRight:'1px solid grey'
-             }}>
+            <div style={style.fileExplorer}>
               <FileExplorer/>
-              <div style={{
-                    position:'absolute',
-                    color:'white',
-                    bottom:10,
-                    left:'25%',
-                    borderTop: '1px solid grey'
-                  }}>
+              <div style={style.addContentButtonGroup}>
                   <AddContentButtonsContainer/>
                   <AddContentDialogContainer/>
               </div>

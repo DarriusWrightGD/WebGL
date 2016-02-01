@@ -8,11 +8,7 @@ function addTab(state, action){
   {
     var guid = Guid.generate();
 
-    var newTabs = _.filter(state.tabs,(t)=>{
-      if(state.defaultTab.id !== t.id ){
-        return t;
-      }
-    });
+    var newTabs = _.filter(state.tabs,(t)=>state.defaultTab.id !== t.id);
     return {
       ...state,
       tabs:[...newTabs, {file:file, id:guid}],

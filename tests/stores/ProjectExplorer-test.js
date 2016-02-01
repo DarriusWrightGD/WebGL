@@ -1,20 +1,24 @@
 import {expect} from 'chai';
 import projectExplorer from 'src/stores/reducers/ProjectExplorerReducer';
 
-describe('ProjectExplorerReducer tests', function(){
+describe('ProjectExplorerReducer', function(){
   var state;
 
   before(()=>{
     state = {
       fileExplorer:{
         folders:[{name:'fooOlder', open:false}],
-        files:[{name:'foo.txt',content:'console.log(foo)', type:'text'}]
+        files:[{name:'foo.txt',content:'console.log(foo)', type:'text'}],
+        programs:[]
       },
       addContentDialog:{
         fileDialog: {
           open:false
         },
         folderDialog:{
+          open:false
+        },
+        programDialog:{
           open:false
         }
       }

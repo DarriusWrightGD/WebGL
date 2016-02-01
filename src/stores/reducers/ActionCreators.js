@@ -4,12 +4,17 @@ module.exports = {
   openFileDialog:()=>{
     return {
       type:Events.openFileDialogEvent
-    }
+    };
   },
   openFolderDialog:()=>{
     return {
       type: Events.openFolderDialogEvent
-    }
+    };
+  },
+  openProgramDialog:()=>{
+    return {
+      type: Events.openProgramDialogEvent
+    };
   },
   fileTypeChanged: (selectedFileIndex)=>{
     return {
@@ -75,6 +80,34 @@ module.exports = {
       type: Events.createFolderErrorEvent,
       pathMessage,
       folderMessage
+    }
+  },
+  createProgramLocationError: (pathMessage, fileMessage)=>{
+    return {
+      type: Events.createProgramLocationErrorEvent,
+      pathMessage,
+      fileMessage
+    }
+  },
+  createProgramShaderError: (vertexShaderMessage, fragmentShaderMessage)=>{
+    return {
+      type: Events.createProgramShaderErrorEvent,
+      vertexShaderMessage,
+      fragmentShaderMessage
+    }
+  },
+  createProgram: (programLocation, programName, vertexShaderLocation, fragmentShaderLocation)=>{
+    return {
+      type: Events.createProgramEvent,
+      programLocation,
+      programName,
+      vertexShaderLocation,
+      fragmentShaderLocation
+    }
+  },
+  closeProgramDialog:()=>{
+    return {
+      type: Events.closeProgramDialogEvent
     }
   }
 }

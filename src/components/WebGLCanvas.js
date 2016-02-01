@@ -8,8 +8,6 @@ export default class WebGLCanvas extends React.Component{
     super(props);
   }
 
-  componentWillMount(){
-  }
 
   componentWillUnmount(){
     this.loop.stop();

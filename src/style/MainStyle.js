@@ -22,5 +22,23 @@ module.exports ={
   },
   projectIcon:{
     ...icon
+  },
+  addContentButtonGroup: {
+    position:'absolute',
+    color:'white',
+    bottom:10,
+    left:'15%',
+    borderTop: '1px solid grey'
+  },
+  fileExplorer: {
+    color:'white',
+    background:'#141414',
+    height:445,
+    borderRight:'1px solid grey'
+  },
+  dialogForm: {
+    paddingLeft:'30%',
+    width:'100%'
   }
+
 }

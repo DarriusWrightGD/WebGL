@@ -24,11 +24,7 @@ export default function(state = initialState, action){
       break;
     case Events.updateFileContentEvent:
       var newState = _.cloneDeep(state);
-      var file = _.find(newState.tabs, (tab)=>{
-        if(tab.file.name === action.name){
-          return tab;
-        }
-      }).file;
+      var file = _.find(newState.tabs, (tab)=>tab.file.name === action.name).file;
 
       file.content = action.content;
       return newState;

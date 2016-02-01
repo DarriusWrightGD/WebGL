@@ -4,15 +4,14 @@ import AddContentDialog from './AddContentDialog';
 import actions from 'src/stores/reducers/ActionCreators';
 import pathValidator from 'src/stores/reducers/PathValidator';
 
-const addContentValidate = (fileExplorer, path, contentName, contentValidator)=>{
-  let pathMessage;
+const checkContent = (fileExplorer, path, contentName, contentValidator)=>{
+  let pathMessage, contentMessage;
   try {
     pathValidator.validatePath(fileExplorer, path);
   } catch (e) {
     pathMessage = e.message;
   }
 
-  let contentMessage;
   if(!pathMessage){
     try {
       contentValidator(fileExplorer, path, contentName);
@@ -24,6 +23,25 @@ const addContentValidate = (fileExplorer, path, contentName, contentValidator)=>
   return {contentMessage,pathMessage};
 }
 
+const checkShaders = (fileExplorer, vertexShaderLocation, fragmentShaderLocation)=>{
+  let vertexShaderMessage, fragmentShaderMessage;
+
+  try{
+    pathValidator.validateFileExists(fileExplorer,vertexShaderLocation);
+  }catch(e){
+    vertexShaderMessage = e.message;
+  }
+
+  if(!vertexShaderMessage){
+    try{
+      pathValidator.validateFileExists(fileExplorer,fragmentShaderMessage);
+    }catch(e){
+      fragmentShaderMessage = e.message;
+    }
+  }
+
+  return {vertexShaderMessage,fragmentShaderMessage};
+}
 
 
 const mapStateToProps = (state)=>{
@@ -41,11 +59,14 @@ const mapDispatchToProps = (dispatch)=>{
     onCloseFolderDialog: ()=>{
       dispatch(actions.closeFolderDialog());
     },
+    onCloseProgramDialog: ()=>{
+      dispatch(actions.closeProgramDialog());
+    },
     onFileSelect: (value)=>{
       dispatch(actions.fileTypeChanged(value));
     },
     onAddFile: (fileExplorer, path, fileName, extension)=>{
-      let errors = addContentValidate(fileExplorer,path,fileName,pathValidator.validateFile);
+      let errors = checkContent(fileExplorer,path,fileName,pathValidator.validateFileDoesNotExist);
 
       if(errors.pathMessage || errors.contentMessage){
         dispatch(actions.createFileError(errors.pathMessage,errors.contentMessage));
@@ -55,13 +76,32 @@ const mapDispatchToProps = (dispatch)=>{
       }
     },
     onAddFolder: (fileExplorer,path,folderName)=>{
-      let errors = addContentValidate(fileExplorer,path,folderName,pathValidator.validateFolder);
+      let errors = checkContent(fileExplorer,path,folderName,pathValidator.validateFolderDoesNotExist);
 
       if(errors.pathMessage || errors.contentMessage){
         dispatch(actions.createFolderError(errors.pathMessage,errors.contentMessage));
       }else{
         dispatch(actions.createFolder(path, folderName));
         dispatch(actions.closeFolderDialog());
+      }
+    },
+    onAddProgram: (fileExplorer, programLocation,programName,vertexShaderLocation,fragmentShaderLocation)=>{
+      console.log(gl);
+
+      if(programName){
+        programName += '.pg';
+      }
+
+      let locationErrors = checkContent(fileExplorer,programLocation,programName,pathValidator.validateFileDoesNotExist);
+      let shaderErrors = checkShaders(fileExplorer,vertexShaderLocation,fragmentShaderLocation);
+
+      if(locationErrors.pathMessage || locationErrors.contentMessage){
+        dispatch(actions.createProgramLocationError(locationErrors.pathMessage,locationErrors.contentMessage));
+      }else if(shaderErrors.vertexShaderMessage || shaderErrors.fragmentShaderMessage){
+        dispatch(actions.createProgramShaderError(shaderErrors.vertexShaderMessage, shaderErrors.fragmentShaderMessage));
+      }else{
+        dispatch(actions.createProgram(programLocation, programName, vertexShaderLocation, fragmentShaderLocation));
+        dispatch(actions.closeProgramDialog());
       }
     }
   }

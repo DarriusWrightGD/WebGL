@@ -3,7 +3,7 @@ import folderDialog from 'src/stores/reducers/AddFolderDialogReducer';
 import Events from 'src/components/Events';
 import {createStore} from 'redux';
 
-describe('AddFolderDialogReducer tests', ()=>{
+describe('AddFolderDialogReducer', ()=>{
   var state;
   var errors;
 

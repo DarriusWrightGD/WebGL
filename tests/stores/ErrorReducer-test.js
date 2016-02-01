@@ -2,7 +2,7 @@ import errorLog from 'src/stores/reducers/ErrorReducer';
 import Events from 'src/components/Events';
 import {expect} from 'chai';
 
-describe('ErrorReducer tests', ()=>{
+describe('ErrorReducer', ()=>{
   var state;
   before(()=>{
     state = {

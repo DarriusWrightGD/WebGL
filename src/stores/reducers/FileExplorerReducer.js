@@ -37,11 +37,15 @@ function createFolder(state, action){
 function updateFileContent(state, action){
   var newState = _.cloneDeep(state);
   let currentFolder = pathValidator.getFolderAtPath(newState, action.path);
-  let file = _.find(currentFolder.files,(f)=>{
-    if(f.name === action.name)
-      return f;
-  });
+  let file = _.find(currentFolder.files,(f)=>f.name === action.name);
   file.content = action.content;
+  return newState;
+}
+
+function createProgram(state,action){
+  var newState = _.cloneDeep(state);
+  let currentFolder = pathValidator.getFolderAtPath(newState, action.program.path);
+  currentFolder.programs.push(action.program);
   return newState;
 }
 
@@ -55,6 +59,9 @@ export default function(state = initialState, action){
     break;
     case Events.createFolderEvent:
       return createFolder(state,action);
+    break;
+    case Events.createProgramEvent:
+      return createProgram(state,action);
     break;
     case Events.updateFileContentEvent:
       return updateFileContent(state,action);

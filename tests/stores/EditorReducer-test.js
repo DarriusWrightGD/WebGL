@@ -4,20 +4,24 @@ import {expect} from 'chai';
 import Events from 'src/components/Events';
 import Guid from 'util/Guid';
 
-describe('EditorReducer Tests', function(){
+describe('EditorReducer', function(){
   var state;
   before(()=>{
     state = {
       projectExplorer:{
         fileExplorer:{
           folders:[],
-          files:[]
+          files:[],
+          programs:[]
         },
         addContentDialog:{
           fileDialog: {
             open:false
           },
           folderDialog:{
+            open:false
+          },
+          programDialog:{
             open:false
           }
         }

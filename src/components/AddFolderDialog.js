@@ -1,8 +1,9 @@
 import React from 'react';
+import DialogActions from './DialogActions';
+import style from 'style/MainStyle';
 import mui from 'material-ui';
-import Events from './Events';
 
-var {IconButton, FlatButton, Dialog, TextField, MenuItem, SelectField} = mui;
+var {Dialog, TextField} = mui;
 
 export default ({title, open,
   fileExplorer,
@@ -12,17 +13,9 @@ export default ({title, open,
   let folderName;
   let path;
 
-  const actions = <div>
-    <FlatButton
-      label="Cancel"
-      secondary={true}
-      onTouchTap={()=>{onClose()}} />
-    <FlatButton
-      label="Submit"
-      primary={true}
-      onTouchTap={()=>{
-        onAddFolder(fileExplorer,path.getValue(),folderName.getValue())}} />
-  </div>;
+  const actions = <DialogActions
+    onClose={onClose}
+    onSubmit={()=>{onAddFolder(fileExplorer,path.getValue(),folderName.getValue())}}/>
 
   return (
     <Dialog
@@ -31,7 +24,7 @@ export default ({title, open,
       modal={false}
       open={open}
       onRequestClose={()=>{onClose()}}>
-      <div style={{paddingLeft:'30%', width:'100%'}}>
+      <div style={style.dialogForm}>
         <div>
           <TextField errorText={pathMessage} ref={node=> {path = node}} hintText='Enter path'/>
         </div>
