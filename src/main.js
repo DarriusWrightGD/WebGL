@@ -10,6 +10,8 @@ import Provider from './components/Provider';
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
+window.gl = undefined;
+
 require('material-design-icons/iconfont/material-icons.css');
 require('./main.scss');
 

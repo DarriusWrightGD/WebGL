@@ -17,7 +17,6 @@ export default class WebGLCanvas extends React.Component{
     this.initGL(ReactDOM.findDOMNode(this));
     this.loop = MainLoop
     .setMaxAllowedFPS(60)
-    .setBegin(this.initGL)
     .setUpdate(this.props.update)
     .setDraw(function(){
       this.forceUpdate();
@@ -31,30 +30,29 @@ export default class WebGLCanvas extends React.Component{
 
   initGL= ()=>{
     var canvas = ReactDOM.findDOMNode(this);
-    this.gl = null;
     try{
-      this.gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
     }
     catch(e){
       this.setState({glErrorMessage : e.message});
     }
 
-    if(!this.gl){
+    if(!gl){
       this.setState({glError:"Unable to initalize webgl. Your browser may not support it."});
     }
 
-    this.props.init(this.gl);
+    this.props.init(gl);
   };
 
   compileShader= (shaderSource,shaderType)=>{
-    var shader = this.gl.createShader(shaderType);
-    this.gl.shaderSource(shader,shaderSource);
-    this.gl.compileShader(shader);
+    var shader = gl.createShader(shaderType);
+    gl.shaderSource(shader,shaderSource);
+    gl.compileShader(shader);
 
-    var success = this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS);
+    var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
     if(!success){
-      var errorMessage = 'could not compile shader : ' + this.gl.getShaderInfoLog(shader)
-      this.gl.deleteShader(shader);
+      var errorMessage = 'could not compile shader : ' + gl.getShaderInfoLog(shader)
+      gl.deleteShader(shader);
       throw new Error(errorMessage);
     }
 
@@ -63,25 +61,25 @@ export default class WebGLCanvas extends React.Component{
 
   compileShaders= ()=>{
     return {
-      vertexShader: this.compileShader(this.vertexShader,this.gl.VERTEX_SHADER),
-      fragmentShader: this.compileShader(this.fragmentShader,this.gl.FRAGMENT_SHADER)
+      vertexShader: this.compileShader(this.vertexShader,gl.VERTEX_SHADER),
+      fragmentShader: this.compileShader(this.fragmentShader,gl.FRAGMENT_SHADER)
     };
   };
 
   compileProgram= ()=>{
     try{
       var shaders = this.compileShaders();
-      this.program = this.gl.createProgram();
-      this.gl.attachShader(this.program,shaders.vertexShader);
-      this.gl.attachShader(this.program,shaders.fragmentShader);
-      this.gl.linkProgram(this.program);
+      this.program = gl.createProgram();
+      gl.attachShader(this.program,shaders.vertexShader);
+      gl.attachShader(this.program,shaders.fragmentShader);
+      gl.linkProgram(this.program);
 
-      var success = this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS);
+      var success = gl.getProgramParameter(this.program, gl.LINK_STATUS);
 
       if(!success){
-        this.gl.deleteProgram(this.program);
+        gl.deleteProgram(this.program);
       }else{
-        this.gl.useProgram(this.program);
+        gl.useProgram(this.program);
       }
     }catch(e){
 
@@ -94,7 +92,7 @@ export default class WebGLCanvas extends React.Component{
   }
 
   paint= ()=>{
-    this.props.draw(this.gl);
+    this.props.draw(gl);
   };
 
   vertexShaderChanged(text){
